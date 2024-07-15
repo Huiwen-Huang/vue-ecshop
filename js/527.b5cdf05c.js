@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_ecshop"]=self["webpackChunkvue_ecshop"]||[]).push([[527],{1878:function(n,e,c){c.r(e),c.d(e,{default:function(){return d}});var s=c(6768),t=c.p+"img/shop-2.dc0d1bc0.png";const u={class:"container"},r=(0,s.Lk)("img",{src:t,alt:"",style:{width:"600px"}},null,-1),a=[r];function i(n,e){return(0,s.uX)(),(0,s.CE)("div",u,a)}var o=c(1241);const p={},l=(0,o.A)(p,[["render",i]]);var d=l}}]);
+//# sourceMappingURL=527.b5cdf05c.js.map

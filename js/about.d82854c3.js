@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkvue_ecshop"]=self["webpackChunkvue_ecshop"]||[]).push([[594],{603:function(u,e,n){n.r(e),n.d(e,{default:function(){return f}});var s=n(6768);const t={class:"about"},a=(0,s.Lk)("h1",null,"This is an about page",-1),c=[a];function r(u,e){return(0,s.uX)(),(0,s.CE)("div",t,c)}var o=n(1241);const h={},i=(0,o.A)(h,[["render",r]]);var f=i}}]);
+//# sourceMappingURL=about.d82854c3.js.map
