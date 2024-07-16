@@ -1,4 +1,5 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
     <div class="container">
       <!-- 購物車無商品時 -->
@@ -121,6 +122,7 @@
 </template>
 
 <script>
+import ShopNavbar from '@/components/ShopNavbar.vue'
 import CartDelModal from '@/components/CartDelModal.vue'
 import statusStore from '@/stores/statusStore.js'
 import cartStore from '@/stores/cartStore.js'
@@ -150,7 +152,8 @@ export default {
     }
   },
   components: {
-    CartDelModal
+    CartDelModal,
+    ShopNavbar
   },
   computed: {
     ...mapState(cartStore, ['carts', 'total', 'finalTotal']),

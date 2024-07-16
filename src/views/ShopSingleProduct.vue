@@ -1,4 +1,5 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <div class="container mt-4">
     <nav aria-label="breadcrumb">
@@ -33,6 +34,8 @@
 </template>
 
 <script>
+import ShopNavbar from '@/components/ShopNavbar.vue'
+
 export default {
   data () {
     return {
@@ -43,6 +46,9 @@ export default {
         loadingItem: ''
       }
     }
+  },
+  components: {
+    ShopNavbar
   },
   inject: ['emitter'],
   methods: {

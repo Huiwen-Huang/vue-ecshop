@@ -1,4 +1,5 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <div class="container">
     <h3>我的訂單</h3>
@@ -26,6 +27,7 @@
 </template>
 
 <script>
+import ShopNavbar from '@/components/ShopNavbar.vue'
 import PaginationCard from '@/components/PaginationCard.vue'
 
 export default {
@@ -37,7 +39,8 @@ export default {
     }
   },
   components: {
-    PaginationCard
+    PaginationCard,
+    ShopNavbar
   },
   methods: {
     getOrders (page = 1) {

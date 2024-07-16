@@ -1,4 +1,5 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <div class="container">
     <div class="row mt-4">
@@ -67,6 +68,7 @@
 </template>
 
 <script>
+import ShopNavbar from '@/components/ShopNavbar.vue'
 import PaginationCard from '@/components/PaginationCard.vue'
 import productStore from '@/stores/productStore'
 import statusStore from '@/stores/statusStore'
@@ -81,7 +83,8 @@ export default {
     }
   },
   components: {
-    PaginationCard
+    PaginationCard,
+    ShopNavbar
   },
   inject: ['emitter'],
   computed: {
