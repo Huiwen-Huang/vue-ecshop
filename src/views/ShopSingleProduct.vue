@@ -21,7 +21,7 @@
         <button type="button" class="btn btn-outline-warning"
                 @click="addCart(product.id)"
                 :disabled="this.status.loadingItem === product.id">
-          <div class="spinner-border spinner-border-sm text-danger" role="status"
+          <div class="spinner-border spinner-border-sm text-warning" role="status"
                 v-if="this.status.loadingItem === product.id">
             <span class="visually-hidden">Loading...</span>
           </div>

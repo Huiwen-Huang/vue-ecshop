@@ -40,7 +40,7 @@
                   <td>
                     <div class="input-group input-group-sm">
                       <input type="number" class="form-control"
-                              :disabled="status.loadingItem === item.id"
+                              :disabled="cartLoadingItem === item.id"
                               v-model.number="item.qty" min="1"
                               @change="updateCart(item)">
                       <div class="input-group-text">/ {{ item.product.unit }}</div>
@@ -122,18 +122,21 @@
 
 <script>
 import CartDelModal from '@/components/CartDelModal.vue'
+import statusStore from '@/stores/statusStore.js'
+import cartStore from '@/stores/cartStore.js'
+import { mapState, mapActions } from 'pinia'
 
 export default {
   data () {
     return {
-      carts: [], // 購物車所有商品
+      // carts: [], // 購物車所有商品
       cart: {}, // 單一列商品
-      total: '',
-      finalTotal: '',
-      isLoading: false,
-      status: {
-        loadingItem: ''
-      },
+      // total: '',
+      // finalTotal: '',
+      // isLoading: false,
+      // status: {
+      //   loadingItem: ''
+      // },
       coupon_code: '',
       form: {
         user: {
@@ -149,23 +152,28 @@ export default {
   components: {
     CartDelModal
   },
+  computed: {
+    ...mapState(cartStore, ['carts', 'total', 'finalTotal']),
+    ...mapState(statusStore, ['isLoading', 'cartLoadingItem'])
+  },
   inject: ['emitter'],
   methods: {
     // 取購物車列表
-    getCart () {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-      this.isLoading = true
-      this.$http.get(api)
-        .then((res) => {
-          this.isLoading = false
-          console.log('getCart', res)
-          if (res.data.success) {
-            this.carts = res.data.data.carts
-            this.total = res.data.data.total
-            this.finalTotal = res.data.data.final_total
-          }
-        })
-    },
+    ...mapActions(cartStore, ['getCart', 'updateCart']),
+    // getCart () {
+    //   const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+    //   this.isLoading = true
+    //   this.$http.get(api)
+    //     .then((res) => {
+    //       this.isLoading = false
+    //       console.log('getCart', res)
+    //       if (res.data.success) {
+    //         this.carts = res.data.data.carts
+    //         this.total = res.data.data.total
+    //         this.finalTotal = res.data.data.final_total
+    //       }
+    //     })
+    // },
     // 開啟刪除彈窗
     openDelModal (item) {
       this.cart = { ...item }
@@ -200,22 +208,22 @@ export default {
         })
     },
     // 更新購物車價格
-    updateCart (item) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-      const cart = {
-        product_id: item.product_id,
-        qty: item.qty
-      }
-      this.isLoading = true
-      this.status.loadingItem = item.id
-      this.$http.put(api, { data: cart })
-        .then(res => {
-          console.log('updateCart', res)
-          this.isLoading = false
-          this.status.loadingItem = ''
-          this.getCart()
-        })
-    },
+    // updateCart (item) {
+    //   const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
+    //   const cart = {
+    //     product_id: item.product_id,
+    //     qty: item.qty
+    //   }
+    //   this.isLoading = true
+    //   this.status.loadingItem = item.id
+    //   this.$http.put(api, { data: cart })
+    //     .then(res => {
+    //       console.log('updateCart', res)
+    //       this.isLoading = false
+    //       this.status.loadingItem = ''
+    //       this.getCart()
+    //     })
+    // },
     // 套用優惠活動
     addCouponCode () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`

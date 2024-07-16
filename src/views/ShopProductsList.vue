@@ -38,7 +38,7 @@
       </div> -->
       <!-- 產品卡片 -->
       <div class="col d-flex flex-wrap justify-content-center">
-        <template v-for="item in products" :key="item.id">
+        <template v-for="item in sortProducts" :key="item.id">
           <div class="card mx-4 mb-4 shadow rounded" style="width: 18rem;">
           <div style="height: 200px; background-size: cover; background-position: top"
                   :style="{backgroundImage: `url(${item.imageUrl})`}"></div>
@@ -68,13 +68,13 @@
 
 <script>
 import PaginationCard from '@/components/PaginationCard.vue'
+import productStore from '@/stores/productStore'
+import statusStore from '@/stores/statusStore'
+import { mapState, mapActions } from 'pinia'
 
 export default {
   data () {
     return {
-      products: [],
-      pagination: {},
-      isLoading: false,
       status: {
         loadingItem: '' // 對應品項 ID
       }
@@ -84,19 +84,13 @@ export default {
     PaginationCard
   },
   inject: ['emitter'],
+  computed: {
+    ...mapState(productStore, ['sortProducts', 'pagination']),
+    ...mapState(statusStore, ['isLoading'])
+  },
   methods: {
-    // 取得產品列表
-    getProducts (page = 1) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/?page=${page}`
-      this.isLoading = true
-      this.$http.get(api)
-        .then((res) => {
-          this.products = res.data.products
-          this.pagination = res.data.pagination
-          this.isLoading = false
-          console.log(res.data)
-        })
-    },
+    // 取得產品列表(透過 pinia)
+    ...mapActions(productStore, ['getProducts']),
     // 進入單一商品介紹頁
     getProduct (id) {
       this.$router.push(`/shop/product/${id}`)
