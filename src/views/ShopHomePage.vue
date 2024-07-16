@@ -9,10 +9,22 @@
 
 <script>
 import ShopNavbar from '@/components/ShopNavbar.vue'
+import cartStore from '@/stores/cartStore'
+import { mapState, mapActions } from 'pinia'
 
 export default {
   components: {
     ShopNavbar
+  },
+  computed: {
+    ...mapState(cartStore, ['carts'])
+  },
+  methods: {
+    // 取得購物車數量
+    ...mapActions(cartStore, ['getCart'])
+  },
+  created () {
+    this.getCart()
   }
 }
 </script>

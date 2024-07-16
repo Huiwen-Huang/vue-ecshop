@@ -4,7 +4,7 @@ import statusStore from './statusStore'
 
 const status = statusStore()
 
-export default defineStore('productState', {
+export default defineStore('cartState', {
   state: () => {
     return {
       carts: [],

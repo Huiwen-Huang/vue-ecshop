@@ -54,37 +54,6 @@ const routes = [
       }
     ]
   }
-  // {
-  //   path: '/shop',
-  //   component: () => import('../views/ShopBoard.vue'),
-  //   children: [
-  //     {
-  //       path: 'home',
-  //       component: () => import('../views/ShopHomePage.vue')
-  //     },
-  //     {
-  //       path: 'products',
-  //       component: () => import('../views/ShopProductsList.vue')
-  //     },
-  //     {
-  //       path: 'product/:productId',
-  //       component: () => import('../views/ShopSingleProduct.vue')
-  //     },
-  //     {
-  //       path: 'cart',
-  //       component: () => import('../views/ShopCartList.vue')
-  //     },
-  //     {
-  //       path: 'checkout/:orderId',
-  //       component: () => import('../views/ShopCheckout.vue')
-  //     },
-  //     {
-  //       path: 'orders',
-  //       component: () => import('../views/ShopOrders.vue')
-  //     }
-  //   ]
-  // }
-
 ]
 
 const router = createRouter({
