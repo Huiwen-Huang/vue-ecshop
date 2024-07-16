@@ -14,12 +14,17 @@
                   <router-link class="nav-link" to="/shop/products">全店商品</router-link>
                 </li>
                 <li class="nav-item mx-2 fw-bold">
-                  <router-link class="nav-link" to="/shop/cart">購物車</router-link>
-                </li>
-                <li class="nav-item mx-2 fw-bold">
                   <router-link class="nav-link" to="/shop/orders">我的訂單</router-link>
                 </li>
             </ul>
+        </div>
+        <div class="text-end me-4">
+          <router-link class="text-warning py-2 position-relative" to="/shop/cart">
+            <i class="bi bi-cart4 fs-3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ carts.length }}
+            </span>
+          </router-link>
         </div>
     </div>
 </nav>
@@ -32,6 +37,8 @@
 <script>
 import emitter from '@/methods/emitter'
 import ToastList from '@/components/ToastList.vue'
+import cartStore from '@/stores/cartStore'
+import { mapState } from 'pinia'
 
 export default {
   components: {
@@ -41,6 +48,9 @@ export default {
     return {
       emitter
     }
+  },
+  computed: {
+    ...mapState(cartStore, ['carts'])
   }
 }
 </script>

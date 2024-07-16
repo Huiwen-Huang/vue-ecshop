@@ -7,7 +7,7 @@ const status = statusStore()
 export default defineStore('productState', {
   state: () => {
     return {
-      carts: {},
+      carts: [],
       total: '',
       finalTotal: ''
     }
