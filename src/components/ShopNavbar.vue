@@ -13,8 +13,18 @@
                 <li class="nav-item mx-2 fw-bold">
                   <router-link class="nav-link" to="/about">關於 Hokii</router-link>
                 </li>
-                <li class="nav-item mx-2 fw-bold">
+                <!-- <li class="nav-item mx-2 fw-bold">
                   <router-link class="nav-link" to="/products">全店商品</router-link>
+                </li> -->
+                <li class="nav-item dropdown" ref="dropdown">
+                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >探索商品</a>
+                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <li><router-link class="dropdown-item" to="/products">全店商品</router-link></li>
+                    <li><router-link class="dropdown-item" to="/category/best-sell">經典組合</router-link></li>
+                    <li><router-link class="dropdown-item" to="/category/diy-poke">自選波奇</router-link></li>
+                    <!-- <li><hr class="dropdown-divider"></li> -->
+                    <li><router-link class="dropdown-item" to="/category/salad">清爽沙拉</router-link></li>
+                  </ul>
                 </li>
                 <!-- <li class="nav-item mx-2 fw-bold">
                   <router-link class="nav-link" to="/orders">我的訂單</router-link>
@@ -38,6 +48,7 @@
 </template>
 
 <script>
+import Dropdown from 'bootstrap/js/dist/dropdown'
 import emitter from '@/methods/emitter'
 import ToastList from '@/components/ToastList.vue'
 import cartStore from '@/stores/cartStore'
@@ -54,6 +65,10 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['carts'])
+  },
+  mounted () {
+    this.dropdown = new Dropdown(this.$refs.dropdown)
+    this.dropdown.hide()
   }
 }
 </script>

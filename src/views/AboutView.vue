@@ -2,7 +2,7 @@
   <ShopNavbar></ShopNavbar>
   <div class="container">
     <h1 class="text-center text-warning fw-bold mb-4">Hokii poke</h1>
-    <img class="img-fluid" src="../assets/images/poke_sop.gif" alt="">
+    <img class="img-fluid" src="../assets/images/poke-2.jpg" alt="">
   </div>
 </template>
 

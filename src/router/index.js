@@ -13,7 +13,17 @@ const routes = [
   },
   {
     path: '/product/:productId',
-    component: () => import('../views/ShopSingleProduct.vue')
+    component: () => import('../views/ShopPerProduct.vue')
+  },
+  {
+    path: '/category',
+    component: () => import('../views/CategoriesPage.vue'),
+    children: [
+      {
+        path: 'all',
+        component: () => import('../views/ShopProductsAll.vue')
+      }
+    ]
   },
   {
     path: '/cart',

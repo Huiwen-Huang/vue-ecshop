@@ -1,8 +1,10 @@
 import axios from 'axios'
 import { defineStore } from 'pinia'
 import statusStore from './statusStore'
+import cartStore from './cartStore'
 
 const status = statusStore()
+const carts = cartStore()
 
 export default defineStore('productState', {
   state: () => {
@@ -28,7 +30,7 @@ export default defineStore('productState', {
           this.products = res.data.products
           this.pagination = res.data.pagination
           status.isLoading = false
-          console.log(res.data)
+          console.log('getProducts', res.data)
         })
     },
     // 加入購物車
@@ -43,8 +45,11 @@ export default defineStore('productState', {
       axios.post(api, { data: cart }) // 帶入參數的方式要留意
         .then((res) => {
           status.cartLoadingItem = ''
-          this.$httpMsgState(res, '加入購物車')
-          console.log(res)
+          // this.$httpMsgState(res, '加入購物車')
+          console.log('addCart', res)
+          if (res.data.success) {
+            carts.getCart()
+          }
         })
     }
   }
