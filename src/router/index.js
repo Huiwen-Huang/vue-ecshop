@@ -16,16 +16,6 @@ const routes = [
     component: () => import('../views/ShopPerProduct.vue')
   },
   {
-    path: '/category',
-    component: () => import('../views/CategoriesPage.vue'),
-    children: [
-      {
-        path: 'all',
-        component: () => import('../views/ShopProductsAll.vue')
-      }
-    ]
-  },
-  {
     path: '/cart',
     component: () => import('../views/ShopCartList.vue')
   },

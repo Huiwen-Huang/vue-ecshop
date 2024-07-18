@@ -10,6 +10,8 @@ export default defineStore('productState', {
   state: () => {
     return {
       products: [],
+      categories: [],
+      productSet: [],
       pagination: {}
     }
   },
@@ -21,16 +23,43 @@ export default defineStore('productState', {
       )
   },
   actions: {
-    // 取得產品列表
-    getProducts (page = 1) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/?page=${page}`
+    // 取得產品列表_all
+    getAllProducts () {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
       status.isLoading = true
       axios.get(api)
         .then((res) => {
-          this.products = res.data.products
-          this.pagination = res.data.pagination
+          status.isLoading = false
+          console.log('getAllProducts', res.data)
+          this.productSet = res.data.products
+          // 分類項目
+          const unSort = this.products.map(item => {
+            return item.category
+          })
+          const sorted = unSort.filter((item, i) => {
+            return unSort.indexOf(item) === i
+          })
+          this.categories = sorted
+        })
+    },
+    // 取得產品列表_pagination
+    getProducts (page = 1) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products?page=${page}`
+      status.isLoading = true
+      axios.get(api)
+        .then((res) => {
           status.isLoading = false
           console.log('getProducts', res.data)
+          this.products = res.data.products
+          this.pagination = res.data.pagination
+          // 分類項目
+          const unSort = this.products.map(item => {
+            return item.category
+          })
+          const sorted = unSort.filter((item, i) => {
+            return unSort.indexOf(item) === i
+          })
+          this.categories = sorted
         })
     },
     // 加入購物車
