@@ -10,17 +10,16 @@ export default defineStore('productState', {
   state: () => {
     return {
       products: [],
-      categories: [],
-      productSet: [],
+      categories: {},
       pagination: {}
     }
   },
   getters: {
     // 商品以價格排序
-    sortProducts: (state) =>
-      state.products.sort(
-        (a, b) => a.price - b.price
-      )
+    // sortProducts: (state) =>
+    //   state.products.sort(
+    //     (a, b) => a.price - b.price
+    //   )
   },
   actions: {
     // 取得產品列表_all
@@ -31,7 +30,7 @@ export default defineStore('productState', {
         .then((res) => {
           status.isLoading = false
           console.log('getAllProducts', res.data)
-          this.productSet = res.data.products
+          this.products = res.data.products
           // 分類項目
           const unSort = this.products.map(item => {
             return item.category
@@ -75,6 +74,7 @@ export default defineStore('productState', {
         .then((res) => {
           status.cartLoadingItem = ''
           // this.$httpMsgState(res, '加入購物車')
+          status.pushMsg({ title: '商品已加入購物車' })
           console.log('addCart', res)
           if (res.data.success) {
             carts.getCart()

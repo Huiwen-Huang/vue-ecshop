@@ -128,6 +128,8 @@ import statusStore from '@/stores/statusStore.js'
 import cartStore from '@/stores/cartStore.js'
 import { mapState, mapActions } from 'pinia'
 
+const status = statusStore()
+
 export default {
   data () {
     return {
@@ -163,6 +165,7 @@ export default {
   methods: {
     // 取購物車列表
     ...mapActions(cartStore, ['getCart', 'updateCart']),
+    ...mapActions(statusStore, ['pushMsg']),
     // getCart () {
     //   const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
     //   this.isLoading = true
@@ -193,7 +196,8 @@ export default {
           const deleteComponent = this.$refs.delModal
           deleteComponent.hideModal()
           this.isLoading = false
-          this.$httpMsgState(res, '商品移除')
+          // this.$httpMsgState(res, '商品移除')
+          status.pushMsg({ title: '商品移除成功' })
           console.log('removeCartItem', res)
           this.getCart()
         })
@@ -205,7 +209,7 @@ export default {
       this.$http.delete(api)
         .then(res => {
           this.isLoading = false
-          this.$httpMsgState(res, '商品全數移除')
+          status.pushMsg({ title: '商品全數移除' })
           console.log('removeAll', res)
           this.getCart()
         })
@@ -241,7 +245,8 @@ export default {
           // 套用後清空欄位資料
           this.coupon_code = ''
           // 設定訊息回饋
-          this.$httpMsgState(res, '優惠套用')
+          // this.$httpMsgState(res, '優惠套用')
+          status.pushMsg({ title: '優惠套用成功' })
           console.log('addCouponCode', res)
           if (res.data.success) {
             this.getCart()
