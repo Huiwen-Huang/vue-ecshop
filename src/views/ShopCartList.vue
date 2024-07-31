@@ -33,7 +33,7 @@
               <thead>
                 <tr>
                   <th style="width: 10%"></th>
-                  <th class="ps-5" style="width: 30%">商品資料</th>
+                  <th style="width: 20%">商品資料</th>
                   <th style="width: 15%">單價</th>
                   <th style="width: 8%">數量</th>
                   <th class="text-end" style="width: 25%">小計</th>
@@ -43,10 +43,11 @@
               <tbody>
                 <tr v-for="item in carts" :key="item.product.id">
                   <td>
-                    <div style="height: 80px; background-size: cover; background-position: center"
-                      :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
+                    <img :src="item.product.imageUrl" style="width: 90%;" alt="">
+                    <!-- <div style="height: 80px; background-size: cover; background-position: center"
+                      :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div> -->
                   </td>
-                  <td class="ps-5" >
+                  <td>
                     {{ item.product.title }}
                   </td>
                   <td>
