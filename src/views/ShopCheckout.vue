@@ -4,6 +4,18 @@
   <div class="container">
     <div class="row justify-content-center">
       <!-- 進度條 -->
+      <div class="row mb-4">
+        <div class="col-md-8 mx-auto">
+          <div class="position-relative m-4">
+            <div class="progress" style="height: 1px;">
+              <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">1</button>
+            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
+            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+          </div>
+        </div>
+      </div>
       <div class="w-50 mb-4">
         <div>
           <span class="border bg-secondary text-light rounded-circle py-3 px-4">1</span>

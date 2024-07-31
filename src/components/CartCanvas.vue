@@ -28,9 +28,10 @@
       <!-- 結帳按鈕 -->
       <div class="row w-100 position-absolute bottom-0 end-0 mb-3">
         <div class="col-11">
-          <router-link to="/cart">
+          <!-- <router-link to="/cart">
             <button type="button" class="btn btn-warning w-100 py-3">前往結帳</button>
-          </router-link>
+          </router-link> -->
+          <button type="button" class="btn btn-warning w-100 py-3" @click.prevent="goToCart">前往結帳</button>
         </div>
       </div>
     </div>
@@ -48,6 +49,9 @@ export default {
   },
   methods: {
     ...mapActions(cartStore, ['getCart', 'updateCart', 'delProduct']),
+    goToCart () {
+      this.$router.push('/cart')
+    },
     showCanvas () {
       this.offcanvas.show()
     },

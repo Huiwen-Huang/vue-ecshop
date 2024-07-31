@@ -99,7 +99,7 @@
               <!-- <button class="btn btn-outline-secondary" type="button" @click="removeAll">
                   移除購物車
               </button> -->
-              <router-link to="products">繼續購物</router-link>
+              <router-link to="/products" class="link-secondary">繼續購物</router-link>
             </div>
           </div>
         </div>

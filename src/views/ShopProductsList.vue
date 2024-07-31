@@ -24,9 +24,10 @@
         </div>
       </div>
       <!-- 產品卡片 -->
-      <div class="col-md-9 ms-auto">
+      <div class="col-md-9 col-11 ms-auto">
         <div class="row">
-            <div v-for="item in filterCategories" :key="item.id" class="card mx-3 mb-4 shadow rounded p-0" style="width: 18rem;">
+          <div>{{ filterCategories.category }}</div>
+          <div v-for="item in filterCategories" :key="item.id" class="card mx-3 mb-4 shadow rounded p-0" style="width: 18rem;">
               <a href="" @click.prevent="getProduct(item.id)">
                 <div style="height: 200px; background-size: cover; background-position: top"
                     :style="{backgroundImage: `url(${item.imageUrl})`}">

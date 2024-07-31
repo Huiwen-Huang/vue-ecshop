@@ -2,13 +2,18 @@
   <ShopNavbar></ShopNavbar>
   <div class="container">
     <!-- 進度條 -->
-    <div class="w-50 mb-4">
-      <div>
-        <span class="border bg-secondary text-light rounded-circle py-3 px-4">1</span>
-        <span class="border rounded-circle py-2 px-3">2</span>
-        <span class="border rounded-circle py-3 px-4">3</span>
+      <div class="row mb-4">
+        <div class="col-md-8 mx-auto">
+          <div class="position-relative m-4">
+            <div class="progress" style="height: 1px;">
+              <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">1</button>
+            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
+            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+          </div>
+        </div>
       </div>
-    </div>
     <!-- 訂購人資訊 -->
     <div class="row justify-content-around">
       <!-- 左側欄 -->
@@ -76,7 +81,7 @@
         </div>
         <!-- 按鈕 -->
         <div class="mb-4 d-flex align-items-center justify-content-between">
-          <a href="" class="link " @click.prevent="backToCart">← 返回購物車</a>
+          <a href="" class="link text-secondary" @click.prevent="backToCart">← 返回購物車</a>
           <button class="btn btn-warning" @click.prevent="addOrder">送出訂單</button>
         </div>
       </div>

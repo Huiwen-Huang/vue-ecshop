@@ -1,26 +1,34 @@
 <template>
   <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
-  <div class="container mt-4 pt-4">
-    <nav aria-label="breadcrumb mb-3">
-      <ol class="breadcrumb">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-4">
+      <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><router-link class="link-secondary" to="/products">全部商品</router-link></li>
         <li class="breadcrumb-item" aria-current="page">{{ product.category }}</li>
         <li class="breadcrumb-item active fw-bold" aria-current="page">{{ product.title }}</li>
       </ol>
     </nav>
-    <div class="row">
-      <div class="col-8">
-        <h2>{{ product.title }}</h2>
-        <p>商品描述：Lorem ipsum dolor sit amet consectetur adipisicing elit. Velit, suscipit animi aut, consequatur voluptate nam molestiae praesentium maiores error eligendi quisquam at facere et, ducimus non accusantium dolorem dolore provident.</p>
-        <div style="height: 800px; background-size: cover; background-position: top"
-                  :style="{backgroundImage: `url(${product.imageUrl})`}"></div>
+    <div class="row justify-content-center">
+      <div class="col-md-5 col-11 mb-4" style="max-width: 600px;">
+        <img :src="product.imageUrl" alt="productImg" style="width:100%; height: 100%;">
       </div>
-      <div class="col-4">
-        <p class="fs-6 mb-0"><del>原價 NT${{ product.origin_price }}</del></p>
-        <p class="fs-5"><strong>現在只要 NT${{ product.price }}</strong></p>
+      <div class="col-md-4 col-11">
+        <h2>{{ product.title }}</h2>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
         <hr>
-        <button type="button" class="btn btn-outline-warning"
+        <br>
+        <p class="fs-5 mb-5"><strong>NT${{ product.price }}</strong>
+          <span class="fs-6 mb-0 float-end"><del>NT${{ product.origin_price }}</del></span>
+        </p>
+        <!-- 數量 -->
+        <!-- <div class="input-group input-group-sm">
+          <input type="number" class="form-control"
+                  :disabled="cartLoadingItem === product.id"
+                  v-model.number="product.qty" min="1" :value="1"
+                  @change="updateCart()">
+        </div> -->
+        <button type="button" class="btn btn-outline-warning w-100"
                 @click="addCart(product.id)"
                 :disabled="this.status.loadingItem === product.id">
           <div class="spinner-border spinner-border-sm text-warning" role="status"
