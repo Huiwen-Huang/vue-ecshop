@@ -2,6 +2,19 @@
   <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
     <div class="container">
+      <!-- 進度條 -->
+      <div class="row mb-4">
+        <div class="col-md-8 mx-auto">
+          <div class="position-relative m-4">
+            <div class="progress" style="height: 1px;">
+              <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">1</button>
+            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
+            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+          </div>
+        </div>
+      </div>
       <!-- 購物車無商品時 -->
       <div class="row" v-if="this.total === 0">
         <div class="col text-center">
@@ -11,14 +24,15 @@
         </div>
       </div>
       <!-- 購物車有商品時 -->
-      <div class="row" v-else>
+      <div class="row mx-0" v-else>
         <!-- 購物車商品資訊 -->
-        <div class="col-md-12 mb-4">
+        <h6 class="bg-light p-3">購物車</h6>
+        <div class="mb-4 border rounded p-3">
           <div>
             <table class="table align-middle">
               <thead>
                 <tr>
-                  <th style="width:10%"></th>
+                  <th style="width: 10%"></th>
                   <th class="ps-5" style="width: 30%">商品資料</th>
                   <th style="width: 15%">單價</th>
                   <th style="width: 8%">數量</th>
@@ -29,7 +43,7 @@
               <tbody>
                 <tr v-for="item in carts" :key="item.product.id">
                   <td>
-                    <div style="height: 80px; background-size: cover; background-position: top"
+                    <div style="height: 80px; background-size: cover; background-position: center"
                       :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
                   </td>
                   <td class="ps-5" >
@@ -64,8 +78,8 @@
                 <td class="text-end">NT$ {{ $filters.currency(this.total) }}</td>
               </tr>
               <tr v-if="this.total !== this.finalTotal">
-                <td colspan="5" class="text-end">套用優惠代碼</td>
-                <td class="text-end">{{ this.carts[0]?.coupon?.code }}</td>
+                <td colspan="5" class="text-end text-warning fw-bold">套用優惠折扣</td>
+                <td class="text-end text-warning fw-bold">- {{ this.carts[0]?.coupon?.percent }}%</td>
               </tr>
               <tr>
                 <td colspan="5" class="text-end fw-bold">結帳總金額</td>
@@ -81,41 +95,19 @@
                 </button>
               </div>
             </div>
-            <div class="text-end mt-4">
-              <button class="btn btn-outline-secondary" type="button" @click="removeAll">
+            <div class="text-end mt-4 mx-2">
+              <!-- <button class="btn btn-outline-secondary" type="button" @click="removeAll">
                   移除購物車
-              </button>
+              </button> -->
+              <router-link to="products">繼續購物</router-link>
             </div>
           </div>
         </div>
-        <!-- 購物車訂購資訊 -->
-        <form class="col-md-7 mx-auto shadow rounded px-5 mt-4 mb-4">
-          <h2 class="mt-5">訂購資訊</h2>
-          <hr class="mb-4">
-          <div class="mb-3">
-            <label for="name" class="form-label">訂購人姓名</label>
-            <input type="text" class="form-control" id="name" v-model="form.user.name">
-          </div>
-          <div class="mb-3">
-            <label for="tel" class="form-label">訂購人電話</label>
-            <input type="text" class="form-control" id="tel" v-model="form.user.tel">
-          </div>
-          <div class="mb-3">
-            <label for="eamil" class="form-label">訂購人信箱</label>
-            <input type="email" class="form-control" id="eamil" v-model="form.user.email">
-          </div>
-          <div class="mb-3">
-            <label for="address" class="form-label">收件地址</label>
-            <input type="text" class="form-control" id="address" v-model="form.user.address">
-          </div>
-          <div class="mb-3">
-            <label for="note" class="form-label">訂單備註</label>
-            <textarea class="form-control" id="note" rows="3" v-model="form.message"></textarea>
-          </div>
-          <div class="text-end mt-4 mb-4">
-            <button class="btn btn-warning" @click.prevent="addOrder">送出訂單</button>
-          </div>
-        </form>
+        <!-- 前往結帳 -->
+        <button type="button" class="btn btn-outline-warning w-100 mb-3" @click.prevent="goToCheckout">
+          前往結帳
+        </button>
+        <!-- 看更多商品 -->
       </div>
     </div>
     <CartDelModal ref="delModal" :item="cart" @del-item="removeCartItem"></CartDelModal>
@@ -128,7 +120,7 @@ import statusStore from '@/stores/statusStore.js'
 import cartStore from '@/stores/cartStore.js'
 import { mapState, mapActions } from 'pinia'
 
-const status = statusStore()
+// const status = statusStore()
 
 export default {
   data () {
@@ -141,16 +133,7 @@ export default {
       // status: {
       //   loadingItem: ''
       // },
-      coupon_code: '',
-      form: {
-        user: {
-          name: '',
-          tel: '',
-          email: '',
-          address: ''
-        },
-        message: ''
-      }
+      coupon_code: ''
     }
   },
   components: {
@@ -165,7 +148,7 @@ export default {
   methods: {
     // 取購物車列表
     ...mapActions(cartStore, ['getCart', 'updateCart']),
-    ...mapActions(statusStore, ['pushMsg']),
+    // ...mapActions(statusStore, ['pushMsg']),
     // getCart () {
     //   const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
     //   this.isLoading = true
@@ -196,8 +179,8 @@ export default {
           const deleteComponent = this.$refs.delModal
           deleteComponent.hideModal()
           this.isLoading = false
-          // this.$httpMsgState(res, '商品移除')
-          status.pushMsg({ title: '商品移除成功' })
+          this.$httpMsgState(res, '商品移除')
+          // status.pushMsg({ title: '商品移除成功' })
           console.log('removeCartItem', res)
           this.getCart()
         })
@@ -209,7 +192,8 @@ export default {
       this.$http.delete(api)
         .then(res => {
           this.isLoading = false
-          status.pushMsg({ title: '商品全數移除' })
+          this.$httpMsgState(res, '商品移除')
+          // status.pushMsg({ title: '商品全數移除' })
           console.log('removeAll', res)
           this.getCart()
         })
@@ -245,26 +229,16 @@ export default {
           // 套用後清空欄位資料
           this.coupon_code = ''
           // 設定訊息回饋
-          // this.$httpMsgState(res, '優惠套用')
-          status.pushMsg({ title: '優惠套用成功' })
+          this.$httpMsgState(res, '優惠套用')
+          // status.pushMsg({ title: '優惠套用成功' })
           console.log('addCouponCode', res)
           if (res.data.success) {
             this.getCart()
           }
         })
     },
-    addOrder () {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order`
-      const order = this.form
-      this.isLoading = true
-      this.$http.post(api, { data: order })
-        .then(res => {
-          this.isLoading = false
-          console.log(res)
-          if (res.data.success) {
-            this.$router.push(`/shop/checkout/${res.data.orderId}`)
-          }
-        })
+    goToCheckout () {
+      this.$router.push('/checkout')
     }
   },
   created () {

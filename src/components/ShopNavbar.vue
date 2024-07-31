@@ -33,17 +33,24 @@
             </ul>
         </div>
         <div class="text-end me-4">
-          <router-link class="text-warning py-2 position-relative" to="/cart">
+          <!-- <router-link class="text-warning py-2 position-relative" to="/cart">
             <i class="bi bi-cart4 fs-3"></i>
             <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
               {{ carts.length }}
             </span>
-          </router-link>
+          </router-link> -->
+          <a href="" class="text-warning py-2 position-relative" @click.prevent="$refs.cartCanvas.showCanvas()" data-bs-toggle="offcanvas" data-bs-target="#cart" aria-controls="offcanvasRight">
+            <i class="bi bi-cart4 fs-3"></i>
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+              {{ carts.length }}
+            </span>
+          </a>
         </div>
     </div>
 </nav>
 <div class="container-fluid">
     <ToastList></ToastList>
+    <CartCanvas ref="cartCanvas"></CartCanvas>
     <router-view></router-view>
 </div>
 </template>
@@ -53,11 +60,13 @@
 import emitter from '@/methods/emitter'
 import ToastList from '@/components/ToastList.vue'
 import cartStore from '@/stores/cartStore'
+import CartCanvas from './CartCanvas.vue'
 import { mapState } from 'pinia'
 
 export default {
   components: {
-    ToastList
+    ToastList,
+    CartCanvas
   },
   provide () {
     return {
@@ -66,10 +75,14 @@ export default {
   },
   computed: {
     ...mapState(cartStore, ['carts'])
+  },
+  methods: {
+    toggleOffcanvas () {
+    }
   }
-  // mounted () {
-  //   this.dropdown = new Dropdown(this.$refs.dropdown)
-  //   this.dropdown.hide()
-  // }
 }
 </script>
+
+<style>
+@import '~bootstrap/dist/css/bootstrap.min.css';
+</style>

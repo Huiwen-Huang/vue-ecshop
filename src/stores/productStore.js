@@ -74,7 +74,7 @@ export default defineStore('productState', {
         .then((res) => {
           status.cartLoadingItem = ''
           // this.$httpMsgState(res, '加入購物車')
-          status.pushMsg({ title: '商品已加入購物車' })
+          // status.pushMsg({ title: '商品已加入購物車' })
           console.log('addCart', res)
           if (res.data.success) {
             carts.getCart()

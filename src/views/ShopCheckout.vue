@@ -1,67 +1,118 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
-  <div class="my-5 row justify-content-center">
-    <h3 class="text-center text-secondary mb-4">訂單已完成，謝謝您的訂單！</h3>
-    <form class="col-md-6 mt-4">
-      <p class="text-center fs-5 fw-bold">商品資訊</p>
-      <hr>
-      <table class="table align-middle table-borderless mb-4">
-        <thead>
-        <th class="px-2">商品</th>
-        <th class="px-2">數量</th>
-        <th class="text-end px-2">小計</th>
-        </thead>
-        <tbody>
-        <tr v-for="item in order.products" :key="item.id">
-          <td>{{ item.product.title }}</td>
-          <td>{{ item.qty }} / {{ item.product.unit }}</td>
-          <td class="text-end">NT$ {{ $filters.currency(item.final_total) }}</td>
-        </tr>
-        </tbody>
-        <tfoot>
-        <tr>
-          <td colspan="2" class="text-end fw-bold">總計</td>
-          <td class="text-end">NT$ {{ $filters.currency(order.total) }}</td>
-        </tr>
-        </tfoot>
-      </table>
-      <p class="text-center fs-5 fw-bold mt-4">訂購人資訊</p>
-      <hr>
-      <table class="table table-borderless text-center">
-        <tbody>
-        <tr>
-          <th width="100">訂購人信箱</th>
-          <td class="ps-4">{{ order.user.email }}</td>
-        </tr>
-        <tr>
-          <th>訂購人姓名</th>
-          <td class="ps-4">{{ order.user.name }}</td>
-        </tr>
-        <tr>
-          <th>收件人電話</th>
-          <td class="ps-4">{{ order.user.tel }}</td>
-        </tr>
-        <tr>
-          <th>收件人地址</th>
-          <td class="ps-4">{{ order.user.address }}</td>
-        </tr>
-        <tr>
-          <th>付款狀態</th>
-          <td class="ps-4">
-            <span v-if="!order.is_paid">尚未付款</span>
-            <span class="text-success" v-else>付款完成</span>
-          </td>
-        </tr>
-        </tbody>
-      </table>
-      <div class="text-end">
-        <button class="btn btn-danger" @click.prevent="payOrder" :class="{ 'd-none': order.is_paid === true}">確認付款去</button>
+  <div class="container">
+    <div class="row justify-content-center">
+      <!-- 進度條 -->
+      <div class="w-50 mb-4">
+        <div>
+          <span class="border bg-secondary text-light rounded-circle py-3 px-4">1</span>
+          <span class="border rounded-circle py-2 px-3">2</span>
+          <span class="border rounded-circle py-3 px-4">3</span>
+        </div>
       </div>
-    </form>
+      <div class="col-11 col-md-10 border rounded mb-4 pt-4">
+        <div class="text-center text-secondary mb-5">
+          <i class="bi bi-check-circle text-success fs-1"></i>
+          <div class="fs-5 fw-bold">訂單已完成，謝謝您的訂購！</div>
+          <div class="fs-6 fw-bold">Thank you! Your order has been submitted!</div>
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-5">
+            <p class="fs-5 fw-bold">訂購人資訊</p>
+            <hr>
+            <table class="table table-borderless">
+              <tbody>
+              <tr>
+                <td width="100">訂購人信箱</td>
+                <td class="ps-4">{{ order.user.email }}</td>
+              </tr>
+              <tr>
+                <td>訂購人姓名</td>
+                <td class="ps-4">{{ order.user.name }}</td>
+              </tr>
+              <tr>
+                <td>收件人電話</td>
+                <td class="ps-4">{{ order.user.tel }}</td>
+              </tr>
+              <tr>
+                <td>收件人地址</td>
+                <td class="ps-4">{{ order.user.address }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="col-md-5">
+            <p class="fs-5 fw-bold">取貨及付款資訊</p>
+            <hr>
+            <table class="table table-borderless">
+              <tbody>
+              <tr>
+                <td width="100">取貨方式</td>
+                <td class="ps-4">自取</td>
+              </tr>
+              <tr>
+                <td>取貨狀態</td>
+                <td class="ps-4 fw-bold">未取貨</td>
+              </tr>
+              <tr>
+                <td>付款方式</td>
+                <td class="ps-4">現金</td>
+              </tr>
+              <tr>
+                <td>付款狀態</td>
+                <td class="ps-4 fw-bold">
+                  <span v-if="!order.is_paid">尚未付款</span>
+                  <span class="text-success" v-else>付款完成</span>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="row justify-content-center mt-4">
+          <div class="col-md-10">
+            <p class="fs-5 fw-bold">商品資訊</p>
+            <hr>
+            <table class="table align-middle table-borderless mb-4">
+              <thead>
+              <th style="width:6%"></th>
+              <th class="px-2">商品</th>
+              <th class="px-2">數量</th>
+              <th class="text-end px-2">小計</th>
+              </thead>
+              <tbody>
+              <tr v-for="item in order.products" :key="item.id">
+                <td>
+                  <div style="height: 40px; background-size: cover; background-position: top"
+                    :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
+                </td>
+                <td>{{ item.product.title }}</td>
+                <td>{{ item.qty }} / {{ item.product.unit }}</td>
+                <td class="text-end">NT$ {{ $filters.currency(item.final_total) }}</td>
+              </tr>
+              </tbody>
+              <tfoot>
+              <tr>
+                <td colspan="3" class="text-end fw-bold"></td>
+                <td class="text-end fw-bold">共 NT$ {{ $filters.currency(order.total) }}</td>
+              </tr>
+              </tfoot>
+            </table>
+          </div>
+          <div class="col-md-10 text-end mb-4">
+            <button class="btn btn-danger" @click.prevent="payOrder" :class="{ 'd-none': order.is_paid === true}">確認付款去</button>
+            <button class="btn btn-outline-warning" @click.prevent="backToHome" :class="{ 'd-inline': order.is_paid === true}">回到首頁</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import ShopNavbar from '@/components/ShopNavbar.vue'
+
 export default {
   data () {
     return {
@@ -71,6 +122,9 @@ export default {
       },
       isLoading: false
     }
+  },
+  components: {
+    ShopNavbar
   },
   methods: {
     getOrder () {
@@ -95,6 +149,9 @@ export default {
             this.getOrder()
           }
         })
+    },
+    backToHome () {
+      this.$router.push('/')
     }
   },
   created () {
