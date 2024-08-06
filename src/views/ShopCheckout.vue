@@ -16,13 +16,6 @@
           </div>
         </div>
       </div>
-      <div class="w-50 mb-4">
-        <div>
-          <span class="border bg-secondary text-light rounded-circle py-3 px-4">1</span>
-          <span class="border rounded-circle py-2 px-3">2</span>
-          <span class="border rounded-circle py-3 px-4">3</span>
-        </div>
-      </div>
       <div class="col-11 col-md-10 border rounded mb-4 pt-4">
         <div class="text-center text-secondary mb-5">
           <i class="bi bi-check-circle text-success fs-1"></i>
@@ -30,38 +23,40 @@
           <div class="fs-6 fw-bold">Thank you! Your order has been submitted!</div>
         </div>
         <div class="row justify-content-center mt-4">
+          <!-- 訂購人資訊 -->
           <div class="col-md-5">
             <p class="fs-5 fw-bold">訂購人資訊</p>
             <hr>
             <table class="table table-borderless">
               <tbody>
-              <tr>
-                <td width="100">訂購人信箱</td>
-                <td class="ps-4">{{ order.user.email }}</td>
-              </tr>
-              <tr>
-                <td>訂購人姓名</td>
-                <td class="ps-4">{{ order.user.name }}</td>
-              </tr>
-              <tr>
-                <td>收件人電話</td>
-                <td class="ps-4">{{ order.user.tel }}</td>
-              </tr>
-              <tr>
-                <td>收件人地址</td>
-                <td class="ps-4">{{ order.user.address }}</td>
-              </tr>
+                <tr>
+                  <td>訂購人姓名</td>
+                  <td class="ps-4">{{ order.user.name }}</td>
+                </tr>
+                <tr>
+                  <td width="100">訂購人信箱</td>
+                  <td class="ps-4">{{ order.user.email }}</td>
+                </tr>
+                <tr>
+                  <td>收件人電話</td>
+                  <td class="ps-4">{{ order.user.tel }}</td>
+                </tr>
+                <tr>
+                  <td>收件人地址</td>
+                  <td class="ps-4">{{ order.user.address }}</td>
+                </tr>
               </tbody>
             </table>
           </div>
+          <!-- 取貨及付款資訊 -->
           <div class="col-md-5">
             <p class="fs-5 fw-bold">取貨及付款資訊</p>
             <hr>
-            <table class="table table-borderless">
+            <table class="table table-borderless align-middle">
               <tbody>
               <tr>
                 <td width="100">取貨方式</td>
-                <td class="ps-4">自取</td>
+                <td class="ps-4">{{ order.shipping }} 自取</td>
               </tr>
               <tr>
                 <td>取貨狀態</td>
@@ -69,13 +64,19 @@
               </tr>
               <tr>
                 <td>付款方式</td>
-                <td class="ps-4">現金</td>
+                <td class="ps-4">{{ order.pay }} 現金</td>
               </tr>
               <tr>
                 <td>付款狀態</td>
                 <td class="ps-4 fw-bold">
-                  <span v-if="!order.is_paid">尚未付款</span>
+                  <span v-if="!order.is_paid">未付款</span>
                   <span class="text-success" v-else>付款完成</span>
+                </td>
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <button class="btn btn-danger mx-3" @click.prevent="payOrder" :class="{ 'd-none': order.is_paid === true}">確認付款去</button>
                 </td>
               </tr>
               </tbody>
@@ -83,24 +84,26 @@
           </div>
         </div>
         <div class="row justify-content-center mt-4">
+          <!-- 商品資訊 -->
           <div class="col-md-10">
             <p class="fs-5 fw-bold">商品資訊</p>
             <hr>
             <table class="table align-middle table-borderless mb-4">
               <thead>
               <th style="width:6%"></th>
-              <th class="px-2">商品</th>
-              <th class="px-2">數量</th>
-              <th class="text-end px-2">小計</th>
+              <th class="px-2" style="width:40%">商品</th>
+              <th class="" style="width:10%">數量</th>
+              <th class="text-end mx-2" style="width:20%">小計</th>
               </thead>
               <tbody>
               <tr v-for="item in order.products" :key="item.id">
                 <td>
-                  <div style="height: 40px; background-size: cover; background-position: top"
-                    :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div>
+                  <img :src="item.product.imageUrl" style="height: 30px;" alt="">
+                  <!-- <div style="height: 40px; background-size: cover; background-position: top"
+                    :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div> -->
                 </td>
                 <td>{{ item.product.title }}</td>
-                <td>{{ item.qty }} / {{ item.product.unit }}</td>
+                <td>{{ item.qty }}</td>
                 <td class="text-end">NT$ {{ $filters.currency(item.final_total) }}</td>
               </tr>
               </tbody>
@@ -112,9 +115,10 @@
               </tfoot>
             </table>
           </div>
-          <div class="col-md-10 text-end mb-4">
-            <button class="btn btn-danger" @click.prevent="payOrder" :class="{ 'd-none': order.is_paid === true}">確認付款去</button>
-            <button class="btn btn-outline-warning" @click.prevent="backToHome" :class="{ 'd-inline': order.is_paid === true}">回到首頁</button>
+          <div class="row justify-content-center p-0">
+            <div class="col-md-10 col-12 text-end mb-4">
+              <button class="btn btn-outline-warning w-100" @click.prevent="backToHome" :class="{ 'd-inline': order.is_paid === true}">回到首頁</button>
+            </div>
           </div>
         </div>
       </div>
@@ -147,6 +151,7 @@ export default {
           this.isLoading = false
           if (res.data.success) {
             this.order = res.data.order
+            console.log('getOrder', res)
           }
         })
     },

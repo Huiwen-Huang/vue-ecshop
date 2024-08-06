@@ -105,7 +105,7 @@
           </div>
         </div>
         <!-- 前往結帳 -->
-        <button type="button" class="btn btn-outline-warning w-100 mb-3" @click.prevent="goToCheckout">
+        <button type="button" class="btn btn-warning w-100 mb-3" @click.prevent="goToCheckout">
           前往結帳
         </button>
         <!-- 看更多商品 -->

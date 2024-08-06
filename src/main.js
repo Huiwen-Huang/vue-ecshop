@@ -8,6 +8,11 @@ import Loading from 'vue3-loading-overlay'
 import 'vue3-loading-overlay/dist/vue3-loading-overlay.css'
 import 'bootstrap-icons/font/bootstrap-icons.css'
 
+import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
+import { required, email, min } from '@vee-validate/rules'
+import { localize } from '@vee-validate/i18n'
+import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
+
 import { currency, date } from './methods/filter'
 import $httpMsgState from './methods/pushMsgState'
 
@@ -29,4 +34,18 @@ app.use(store)
 app.use(router)
 app.component('LoadingOverlay', Loading)
 app.use(VueAxios, axios)
+
+app.component('VForm', Form)
+app.component('VField', Field)
+app.component('ErrorMessage', ErrorMessage)
+
+defineRule('required', required)
+defineRule('email', email)
+defineRule('min', min)
+
+configure({
+  generateMessage: localize('zh_TW', zhTW),
+  validateOnInput: true
+})
+
 app.mount('#app')
