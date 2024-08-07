@@ -54,10 +54,12 @@
     </div>
     <!-- 頁籤 -->
     <!-- <PaginationCard :pages="pagination" @emit-pages="getProducts"></PaginationCard> -->
+    <CartCanvas ref="canvas"></CartCanvas>
   </div>
 </template>
 
 <script>
+import CartCanvas from '@/components/CartCanvas.vue'
 import ShopNavbar from '@/components/ShopNavbar.vue'
 // import PaginationCard from '@/components/PaginationCard.vue'
 import productStore from '@/stores/productStore'
@@ -72,7 +74,8 @@ export default {
     }
   },
   components: {
-    ShopNavbar
+    ShopNavbar,
+    CartCanvas
   },
   inject: ['emitter'],
   computed: {
@@ -105,7 +108,28 @@ export default {
       this.$router.push(`/product/${id}`)
     },
     // 加入購物車
-    ...mapActions(productStore, ['addCart'])
+    // ...mapActions(productStore, ['addCart'])
+    // 加入購物車+顯示側欄
+    addCart (id) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
+      this.cartLoadingItem = id
+      // 需要帶入參數
+      const cart = {
+        product_id: id,
+        qty: 1
+      }
+      this.axios.post(api, { data: cart }) // 帶入參數的方式要留意
+        .then((res) => {
+          this.cartLoadingItem = ''
+          // this.$httpMsgState(res, '加入購物車')
+          // status.pushMsg({ title: '商品已加入購物車' })
+          console.log('addCart', res)
+          if (res.data.success) {
+            this.getCart()
+            this.$refs.canvas.showCanvas()
+          }
+        })
+    }
   },
   created () {
     this.getAllProducts()

@@ -38,7 +38,7 @@
         <div class="row justify-content-center mt-4">
           <!-- 訂購人資訊 -->
           <div class="col-md-5">
-            <p class="fs-5 fw-bold">訂購人資訊</p>
+            <p class="fw-bold">訂購人資訊</p>
             <hr>
             <table class="table table-borderless">
               <tbody>
@@ -63,7 +63,7 @@
           </div>
           <!-- 取貨及付款資訊 -->
           <div class="col-md-5">
-            <p class="fs-5 fw-bold">取貨及付款資訊</p>
+            <p class="fw-bold">取貨及付款資訊</p>
             <hr>
             <table class="table table-borderless align-middle">
               <tbody>
@@ -99,7 +99,7 @@
         <div class="row justify-content-center mt-4">
           <!-- 商品資訊 -->
           <div class="col-md-10">
-            <p class="fs-5 fw-bold">商品資訊</p>
+            <p class="fw-bold">商品資訊</p>
             <hr>
             <table class="table align-middle table-borderless mb-4">
               <thead>
