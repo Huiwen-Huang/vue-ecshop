@@ -2,21 +2,34 @@
   <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <div class="container">
-    <div class="row justify-content-center">
-      <!-- 進度條 -->
-      <div class="row mb-4">
-        <div class="col-md-8 mx-auto">
-          <div class="position-relative m-4">
-            <div class="progress" style="height: 1px;">
-              <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
-            </div>
-            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">1</button>
-            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
-            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+    <!-- 進度條 -->
+    <div class="row mb-4">
+      <div class="col-md-8 col-10 mx-auto">
+        <div class="position-relative m-4">
+          <div class="progress" style="height: 2px;">
+            <div class="progress-bar" role="progressbar" style="width: 100%; --bs-progress-bar-bg: #D6EADF;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+          <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm rounded-pill"
+          style="width: 2rem; height:2rem; --bs-btn-bg: #D6EADF; --bs-btn-color: #fff; --bs-btn-hover-color: #fff;--bs-btn-hover-bg: #A7C4B5; --bs-btn-active-color: #fff; --bs-btn-active-bg: #A7C4B5;">1</button>
+          <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm rounded-pill"
+          style="width: 2rem; height:2rem; --bs-btn-bg: #D6EADF; --bs-btn-color: #fff; --bs-btn-hover-color: #fff;--bs-btn-hover-bg: #A7C4B5; --bs-btn-active-color: #fff; --bs-btn-active-bg: #A7C4B5;">2</button>
+          <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm rounded-pill"
+          style="width: 2rem; height:2rem; --bs-btn-bg: #A7C4B5; --bs-btn-color: #fff; --bs-btn-hover-color: #fff;--bs-btn-hover-bg: #A7C4B5; --bs-btn-active-color: #fff; --bs-btn-active-bg: #A7C4B5;">3</button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 col-10 mx-auto">
+          <div class="position-relative m-2">
+            <div class="position-absolute top-0 start-0 translate-middle d-inline mt-2 ms-4">購物車</div>
+            <div class="position-absolute top-0 start-50 translate-middle d-inline mt-2 ms-2">填寫資料</div>
+            <div class="position-absolute top-0 start-100 translate-middle d-inline mt-2" style="width: 4rem;">訂單確認</div>
           </div>
         </div>
       </div>
-      <div class="col-11 col-md-10 border rounded mb-4 pt-4">
+    </div>
+    <div class="row justify-content-center">
+      <!-- 訂單資訊 -->
+      <div class="col-11 col-md-10 border rounded mb-4 pt-4 mt-4">
         <div class="text-center text-secondary mb-5">
           <i class="bi bi-check-circle text-success fs-1"></i>
           <div class="fs-5 fw-bold">訂單已完成，謝謝您的訂購！</div>
@@ -117,7 +130,7 @@
           </div>
           <div class="row justify-content-center p-0">
             <div class="col-md-10 col-12 text-end mb-4">
-              <button class="btn btn-outline-warning w-100" @click.prevent="backToHome" :class="{ 'd-inline': order.is_paid === true}">回到首頁</button>
+              <button class="btn btn-outline-warning w-100" @click.prevent="backToHome">回到首頁</button>
             </div>
           </div>
         </div>

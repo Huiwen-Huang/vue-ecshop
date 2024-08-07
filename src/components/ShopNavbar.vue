@@ -1,5 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 py-3">
+    <!-- fixed-top opacity-75 -->
     <div class="container-fluid">
         <router-link class="navbar-brand fs-2 fw-bold text-warning mx-3" to="/">Hokii Poke</router-link>
         <!-- navbar -->

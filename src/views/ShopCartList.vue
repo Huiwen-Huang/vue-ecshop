@@ -4,14 +4,30 @@
     <div class="container">
       <!-- 進度條 -->
       <div class="row mb-4">
-        <div class="col-md-8 mx-auto">
+        <div class="col-md-8 col-10 mx-auto">
           <div class="position-relative m-4">
-            <div class="progress" style="height: 1px;">
-              <div class="progress-bar" role="progressbar" style="width: 50%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+            <div class="progress" style="height: 2px;">
+              <div class="progress-bar" role="progressbar" style="width: 100%; --bs-progress-bar-bg: #D6EADF;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
-            <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">1</button>
-            <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">2</button>
-            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm btn-secondary rounded-pill" style="width: 2rem; height:2rem;">3</button>
+            <router-link to="/cart">
+              <button type="button" class="position-absolute top-0 start-0 translate-middle btn btn-sm rounded-pill"
+            style="width: 2rem; height:2rem; --bs-btn-bg: #A7C4B5; --bs-btn-color: #fff; --bs-btn-hover-color: #fff;--bs-btn-hover-bg: #A7C4B5; --bs-btn-active-color: #fff; --bs-btn-active-bg: #A7C4B5;">1</button>
+            </router-link>
+            <router-link to="/checkout">
+              <button type="button" class="position-absolute top-0 start-50 translate-middle btn btn-sm rounded-pill"
+              style="width: 2rem; height:2rem; --bs-btn-bg: #D6EADF; --bs-btn-color: #fff; --bs-btn-hover-color: #fff;--bs-btn-hover-bg: #A7C4B5; --bs-btn-active-color: #fff; --bs-btn-active-bg: #A7C4B5;">2</button>
+            </router-link>
+            <button type="button" class="position-absolute top-0 start-100 translate-middle btn btn-sm rounded-pill"
+            style="width: 2rem; height:2rem; --bs-btn-bg: #D6EADF; --bs-btn-color: #fff; --bs-btn-hover-color: #fff;--bs-btn-hover-bg: #A7C4B5; --bs-btn-active-color: #fff; --bs-btn-active-bg: #A7C4B5;">3</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-8 col-10 mx-auto">
+            <div class="position-relative m-2">
+              <div class="position-absolute top-0 start-0 translate-middle d-inline mt-2 ms-4">購物車</div>
+              <div class="position-absolute top-0 start-50 translate-middle d-inline mt-2 ms-2">填寫資料</div>
+              <div class="position-absolute top-0 start-100 translate-middle d-inline mt-2" style="width: 4rem;">訂單確認</div>
+            </div>
           </div>
         </div>
       </div>
@@ -24,7 +40,7 @@
         </div>
       </div>
       <!-- 購物車有商品時 -->
-      <div class="row mx-0" v-else>
+      <div class="row mx-0 pt-4" v-else>
         <!-- 購物車商品資訊 -->
         <h6 class="bg-light p-3">購物車</h6>
         <div class="mb-4 border rounded p-3">
