@@ -5,3 +5,7 @@
 // Custom.scss
 // Include all of Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+*, *::after, *::before{
+    font-family: "Outfit", "Noto Serif TC", serif;
+}

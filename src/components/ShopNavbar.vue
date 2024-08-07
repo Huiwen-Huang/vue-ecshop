@@ -1,55 +1,43 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4 py-3">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 px-lg-4">
     <!-- fixed-top opacity-75 -->
-    <div class="container-fluid">
-        <router-link class="navbar-brand fs-2 fw-bold text-warning mx-3" to="/">Hokii Poke</router-link>
+    <div class="container-fluid d-flex flex-nowrap">
+        <router-link class="navbar-brand fs-3 fw-bold text-warning mx-3" to="/">Hokii Poke</router-link>
         <!-- navbar -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#offcanvasNavbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" @click.prevent="$refs.offcanvasNavbar.showCanvas()">
-            <span class="navbar-toggler-icon fs-6 float-end"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarText">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item mx-2 fw-bold">
-                    <router-link class="nav-link" to="/">首頁</router-link>
-                </li>
-                <li class="nav-item mx-2 fw-bold">
-                  <router-link class="nav-link" to="/about">關於 Hokii</router-link>
-                </li>
-                <li class="nav-item mx-2 fw-bold">
-                  <router-link class="nav-link" to="/products">全店商品</router-link>
-                </li>
-                <!-- dropdown -->
-                <!-- <li class="nav-item dropdown" ref="dropdown">
-                  <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" >探索商品</a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <li><router-link class="dropdown-item" to="/products">全店商品</router-link></li>
-                    <li><router-link class="dropdown-item" to="/category/best-sell">經典組合</router-link></li>
-                    <li><router-link class="dropdown-item" to="/category/diy-poke">自選波奇</router-link></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><router-link class="dropdown-item" to="/category/salad">清爽沙拉</router-link></li>
-                  </ul>
-                </li> -->
-                <!-- <li class="nav-item mx-2 fw-bold">
-                  <router-link class="nav-link" to="/orders">我的訂單</router-link>
-                </li> -->
-            </ul>
-        </div>
-        <!-- cartItem -->
-        <div class="text-end me-4">
-          <!-- 直接進到購物車 -->
-          <!-- <router-link class="text-warning py-2 position-relative" to="/cart">
-            <i class="bi bi-cart4 fs-3"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{ carts.length }}
-            </span>
-          </router-link> -->
-          <!-- 開啟購物車側欄 -->
-          <a href="" class="text-warning py-2 position-relative" @click.prevent="$refs.cartCanvas.showCanvas()" data-bs-toggle="offcanvas" data-bs-target="#cart" aria-controls="offcanvasRight">
-            <i class="bi bi-cart4 fs-3"></i>
-            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-              {{ carts.length }}
-            </span>
-          </a>
+        <div class="container-fluid d-flex justify-content-end">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#offcanvasNavbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" @click.prevent="$refs.offcanvasNavbar.showCanvas()">
+              <span class="navbar-toggler-icon fs-6 float-end"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarText">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item mx-2 fw-bold">
+                      <router-link class="nav-link" to="/">首頁</router-link>
+                  </li>
+                  <li class="nav-item mx-2 fw-bold">
+                    <router-link class="nav-link" to="/about">關於 Hokii</router-link>
+                  </li>
+                  <li class="nav-item mx-2 fw-bold">
+                    <router-link class="nav-link" to="/products">全店商品</router-link>
+                  </li>
+                </ul>
+                <!-- cartItem -->
+          </div>
+          <div class="text-end ms-2">
+            <!-- 直接進到購物車 -->
+            <!-- <router-link class="text-warning py-2 position-relative" to="/cart">
+              <i class="bi bi-cart4 fs-3"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ carts.length }}
+              </span>
+            </router-link> -->
+            <!-- 開啟購物車側欄 -->
+            <a href="" class="text-warning py-2 position-relative" @click.prevent="$refs.cartCanvas.showCanvas()" data-bs-toggle="offcanvas" data-bs-target="#cart" aria-controls="offcanvasRight">
+              <i class="bi bi-cart4 fs-3"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{ carts.length }}
+              </span>
+            </a>
+          </div>
         </div>
     </div>
 </nav>
