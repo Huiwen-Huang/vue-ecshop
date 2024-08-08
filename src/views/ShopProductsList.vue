@@ -1,21 +1,26 @@
 <template>
   <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <!-- banner -->
+  <div class="container-fuild position-relative mb-4">
+    <img src="../assets/images/banner-3.jpg" class="img-fuild opacity-50 animate__animated animate__fadeInUp" style="max-width: 100%; height: auto;" alt="">
+    <h1 class="text-center text-secondary fw-bold position-absolute translate-middle top-50 start-50 animate__animated animate__rollIn animate__delay-1s">Eat Healthy, Eat Fresh</h1>
+  </div>
   <div class="container">
-    <div class="row mt-4">
+    <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="100">
       <!-- 分類選單 -->
-      <div class="col-md-2">
-        <div class="row">
-          <div class="col-lg-12 col-md-3 col-6">
+      <div class="col-md-9 mb-4">
+        <div class="row justify-content-center">
+          <div class="col-md-2 col-6">
             <button type="button"
-            class="btn btn-outline-warning fw-bold text-center mb-4 w-100"
+            class="btn btn-outline-warning fw-bold text-center mx-3 mb-4 w-100"
             :class="{ 'active': filterCategory === '' }"
             @click.prevent="filterCategory = ''">全部商品
             </button>
           </div>
-          <div v-for="category in categories" :key="category" class="col-lg-12 col-md-3 col-6">
+          <div v-for="category in categories" :key="category" class="col-md-2 col-6">
             <button type="button"
-            class="btn btn-outline-warning fw-bold text-center mb-4 w-100"
+            class="btn btn-outline-warning fw-bold text-center mx-3 mb-4 w-100"
             :class="{ 'active': filterCategory === category }"
             @click.prevent="filterCategory = category">{{ category }}
             <!-- <span class="badge bg-light rounded-pill ms-5">{{ sortProducts.length }}</span> -->
@@ -24,10 +29,10 @@
         </div>
       </div>
       <!-- 產品卡片 -->
-      <div class="col-md-9 col-11 ms-auto">
-        <div class="row">
+      <div class="col-md-9 col-sm-12">
+        <div class="row justify-content-center">
           <div>{{ filterCategories.category }}</div>
-          <div v-for="item in filterCategories" :key="item.id" class="card mx-3 mb-4 shadow rounded p-0" style="width: 18rem;">
+          <div v-for="item in filterCategories" :key="item.id" class="card mx-md-3 mb-4 shadow rounded p-0" style="width: 18rem;">
               <a href="" @click.prevent="getProduct(item.id)">
                 <div style="height: 200px; background-size: cover; background-position: top"
                     :style="{backgroundImage: `url(${item.imageUrl})`}">
@@ -56,11 +61,13 @@
     <!-- <PaginationCard :pages="pagination" @emit-pages="getProducts"></PaginationCard> -->
     <CartCanvas ref="canvas"></CartCanvas>
   </div>
+  <ShopFooter></ShopFooter>
 </template>
 
 <script>
 import CartCanvas from '@/components/CartCanvas.vue'
 import ShopNavbar from '@/components/ShopNavbar.vue'
+import ShopFooter from '@/components/ShopFooter.vue'
 // import PaginationCard from '@/components/PaginationCard.vue'
 import productStore from '@/stores/productStore'
 import statusStore from '@/stores/statusStore'
@@ -75,6 +82,7 @@ export default {
   },
   components: {
     ShopNavbar,
+    ShopFooter,
     CartCanvas
   },
   inject: ['emitter'],

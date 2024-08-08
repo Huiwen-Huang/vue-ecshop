@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 px-lg-4 fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 px-lg-4">
     <!-- fixed-top opacity-75 -->
     <div class="container-fluid d-flex flex-nowrap">
         <router-link class="navbar-brand fs-3 fw-bold text-warning mx-3" to="/">Hokii Poke</router-link>
