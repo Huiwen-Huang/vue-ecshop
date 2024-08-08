@@ -3,10 +3,16 @@
     <div class="container-fluid">
       <div class="row p-0">
         <!-- Banner -->
-        <div class="col-md-12 p-0 mb-md-4 mb-3 position-relative animate__animated animate__fadeInUp">
-          <div style="height: 800px; background-size: cover; background-position: center; opacity: 75%"
+        <div class="col-md-12 p-0 mb-md-4 mb-3 animate__animated animate__fadeInUp">
+          <div class="position-relative" style="height: 800px; background-size: cover; background-position: center; opacity: 75%"
               :style="{backgroundImage: `url(${require('@/assets/images/banner-1.jpg')})`}"></div>
-          <h1 class="text-center text-warning fw-bold position-absolute top-50 start-50 translate-middle animate__animated animate__rollIn animate__delay-1s">Welcome to Hokii poke!</h1>
+          <h1 class="text-center text-warning fw-bold position-absolute top-50 start-50 translate-middle animate__animated animate__rollIn animate__delay-1s">Welcome to Hokii poke!
+            <router-link class="text-decoration-none" to="/products">
+                <button class="btn btn-outline-warning d-block mx-auto mt-4 animate__animated animate__flash animate__delay-2s">
+                SHOP NOW
+              </button>
+              </router-link>
+          </h1>
         </div>
         <!-- 三大主題 -->
         <div class="container-fluid mb-4">

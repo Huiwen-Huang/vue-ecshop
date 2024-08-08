@@ -10,12 +10,12 @@
       </ol>
     </nav>
     <div class="row justify-content-center">
-      <div class="col-md-5 col-11 mb-4" style="max-width: 600px;">
+      <div class="col-md-5 col-11 mb-4" style="max-width: 500px;">
         <img :src="product.imageUrl" alt="productImg" style="width:100%; height: 100%;">
       </div>
       <div class="col-md-4 col-11">
-        <h2>{{ product.title }}</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. </p>
+        <h2 class="mb-4">{{ product.title }}</h2>
+        <p class="mb-4">{{ product.description }}</p>
         <hr>
         <br>
         <p class="fs-5 mb-5"><strong>NT${{ product.price }}</strong>
@@ -40,10 +40,12 @@
       </div>
     </div>
   </div>
+  <ShopFooter></ShopFooter>
 </template>
 
 <script>
 import ShopNavbar from '@/components/ShopNavbar.vue'
+import ShopFooter from '@/components/ShopFooter.vue'
 
 export default {
   data () {
@@ -57,7 +59,8 @@ export default {
     }
   },
   components: {
-    ShopNavbar
+    ShopNavbar,
+    ShopFooter
   },
   inject: ['emitter'],
   methods: {
