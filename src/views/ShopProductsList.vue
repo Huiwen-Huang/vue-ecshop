@@ -2,25 +2,25 @@
   <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <!-- banner -->
-  <div class="container-fuild position-relative mb-4">
-    <img src="../assets/images/banner-3.jpg" class="img-fuild opacity-50 animate__animated animate__fadeInUp" style="max-width: 100%; height: auto;" alt="">
-    <h1 class="text-center text-secondary fw-bold position-absolute translate-middle top-50 start-50 animate__animated animate__rollIn animate__delay-1s">Eat Healthy, Eat Fresh</h1>
+  <div class="container-fuild position-relative mb-4 animate__animated animate__fadeInUp">
+    <img src="../assets/images/banner-3.jpg" class="img-fuild opacity-50" style="max-width: 100%; height: auto;" alt="">
+    <h1 class="text-center text-light fw-bold position-absolute translate-middle top-50 start-50">Eat Healthy, Eat Fresh</h1>
   </div>
   <div class="container">
-    <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="100">
+    <div class="row justify-content-center mt-4" data-aos="fade-up" data-aos-delay="200">
       <!-- 分類選單 -->
-      <div class="col-md-9 mb-4">
+      <div class="col-md-9 col-10 mb-4">
         <div class="row justify-content-center">
           <div class="col-md-2 col-6">
             <button type="button"
-            class="btn btn-outline-warning fw-bold text-center mx-3 mb-4 w-100"
+            class="btn btn-outline-warning fw-bold text-center mb-md-4 mb-2 w-100"
             :class="{ 'active': filterCategory === '' }"
             @click.prevent="filterCategory = ''">全部商品
             </button>
           </div>
           <div v-for="category in categories" :key="category" class="col-md-2 col-6">
             <button type="button"
-            class="btn btn-outline-warning fw-bold text-center mx-3 mb-4 w-100"
+            class="btn btn-outline-warning text-center mb-md-4 mb-2 w-100"
             :class="{ 'active': filterCategory === category }"
             @click.prevent="filterCategory = category">{{ category }}
             <!-- <span class="badge bg-light rounded-pill ms-5">{{ sortProducts.length }}</span> -->
@@ -53,7 +53,7 @@
                 </button>
               </div>
             </div>
-            </div>
+          </div>
         </div>
       </div>
     </div>

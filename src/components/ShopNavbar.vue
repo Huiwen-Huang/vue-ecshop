@@ -8,16 +8,20 @@
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#offcanvasNavbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" @click.prevent="$refs.offcanvasNavbar.showCanvas()">
               <span class="navbar-toggler-icon fs-6 float-end"></span>
           </button>
+          <!-- data-bs-target="#offcanvasNavbar" @click.prevent="$refs.offcanvasNavbar.showCanvas()" -->
           <div class="collapse navbar-collapse" id="navbarText">
               <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item mx-2 fw-bold">
+                  <li class="nav-item mx-2 ">
                       <router-link class="nav-link" to="/">首頁</router-link>
                   </li>
-                  <li class="nav-item mx-2 fw-bold">
+                  <li class="nav-item mx-2 ">
                     <router-link class="nav-link" to="/about">關於 Hokii</router-link>
                   </li>
-                  <li class="nav-item mx-2 fw-bold">
+                  <li class="nav-item mx-2 ">
                     <router-link class="nav-link" to="/products">全店商品</router-link>
+                  </li>
+                  <li class="nav-item mx-2 ">
+                    <router-link class="nav-link" to="/faq">常見問題</router-link>
                   </li>
                 </ul>
               </div>

@@ -8,7 +8,7 @@
               :style="{backgroundImage: `url(${require('@/assets/images/banner-1.jpg')})`}"></div>
           <h1 class="text-center text-warning fw-bold position-absolute top-50 start-50 translate-middle animate__animated animate__rollIn animate__delay-1s">Welcome to Hokii poke!
             <router-link class="text-decoration-none" to="/products">
-                <button class="btn btn-outline-warning d-block mx-auto mt-4 animate__animated animate__flash animate__delay-2s">
+                <button class="btn btn-outline-warning d-block mx-auto mt-4 animate__animated animate__flash animate__delay-1s">
                 SHOP NOW
               </button>
               </router-link>
@@ -59,7 +59,7 @@
         </div>
         <!-- 商品資訊 -->
         <div class="container-fluid bg-light">
-          <div class="row justify-content-center mt-4 bg-light my-md-5 my-3" data-aos="zoom-in">
+          <div class="row justify-content-center mt-4 bg-light my-md-5 my-3">
             <div class="col-md-10 d-flex flex-wrap justify-content-around p-md-0 p-4 py-md-5">
               <div class="card col-md-3 border-0 mb-4 shadow" data-aos="zoom-in">
                 <img src="../assets/images/poke-3.jpg" alt="">
@@ -73,9 +73,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card col-md-3 border-0 mb-4 shadow">
+              <div class="card col-md-3 border-0 mb-4 shadow" data-aos="zoom-in">
                 <img src="../assets/images/poke-4.jpg" alt="">
-                <div class="card-body px-4 bg-light" data-aos="zoom-in">
+                <div class="card-body px-4 bg-light">
                   <h5 class="card-title fw-bold">Hokii 酪梨鮪魚飯</h5>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="card-text m-0">NT$ 179</p>
@@ -85,9 +85,9 @@
                   </div>
                 </div>
               </div>
-              <div class="card col-md-3 border-0 mb-md-4 shadow">
+              <div class="card col-md-3 border-0 mb-md-4 shadow" data-aos="zoom-in">
                 <img src="../assets/images/poke-2.jpg" alt="">
-                <div class="card-body px-4 bg-light" data-aos="zoom-in">
+                <div class="card-body px-4 bg-light">
                   <h5 class="card-title fw-bold">Hokii 優格沙拉</h5>
                   <div class="d-flex justify-content-between align-items-center">
                     <p class="card-text m-0">NT$ 179</p>
@@ -99,6 +99,17 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+    <!-- footer -->
+    <div style="height: 400px; background-size: cover; background-position: center"
+        :style="{backgroundImage: `url(${require('@/assets/images/footer-bn.jpg')})`}">
+      <div class="position-relative top-50 start-0 w-50 ms-md-5 ms-4" data-aos="fade-up">
+        <div class="ms-md-2 fs-5 fw-bold text-secondary">立即輸入電郵訂閱，獲得最新優惠訊息！</div>
+        <div class="input-group mt-3 position-absolute top-75 start-0 w-75">
+          <input type="text" class="form-control" placeholder="輸入信箱立即訂閱">
+          <button class="btn btn-outline-secondary" type="button">訂閱</button>
         </div>
       </div>
     </div>
