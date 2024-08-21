@@ -1,11 +1,10 @@
 <template>
-  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
-  <div class="container">
+  <div class="container mt-5 pt-5">
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
       <ol class="breadcrumb mb-4">
-        <li class="breadcrumb-item"><router-link class="link-secondary" to="/products">全部商品</router-link></li>
+        <li class="breadcrumb-item"><router-link class="link-secondary" to="/shop/products">全部商品</router-link></li>
         <li class="breadcrumb-item" aria-current="page">{{ product.category }}</li>
         <li class="breadcrumb-item active fw-bold" aria-current="page">{{ product.title }}</li>
       </ol>
@@ -116,12 +115,9 @@
       <div class="swiper-pagination"></div>
     </div> -->
   </div>
-  <ShopFooter></ShopFooter>
 </template>
 
 <script>
-import ShopNavbar from '@/components/ShopNavbar.vue'
-import ShopFooter from '@/components/ShopFooter.vue'
 import cartStore from '@/stores/cartStore'
 import productStore from '@/stores/productStore'
 import { mapActions, mapState } from 'pinia'
@@ -136,10 +132,6 @@ export default {
         loadingItem: ''
       }
     }
-  },
-  components: {
-    ShopNavbar,
-    ShopFooter
   },
   computed: {
     ...mapState(productStore, ['products'])

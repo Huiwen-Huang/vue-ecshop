@@ -1,10 +1,10 @@
 <template>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
-  <div class="container mt-5">
-      <form class="row justify-content-center" @submit.prevent="signIn">
-      <div class="col-md-6">
-          <h1 class="h3 mb-3 font-weight-normal">請先登入</h1>
-          <div class="mb-2">
+  <div class="container-fuild" :style="{backgroundImage: `url(${require('@/assets/images/login-bg.jpg')})`}" style="height: 1080px; background-size: cover; background-position: left;">
+      <form class="row justify-content-start p-5 m-0" @submit.prevent="signIn">
+      <div class="col-md-4 p-5">
+          <h1 class="h3 mb-3 font-weight-normal">後台管理系統</h1>
+          <div class="my-2">
           <label for="inputEmail" class="sr-only">Email address</label>
           <input
               type="email"

@@ -1,7 +1,11 @@
 <template>
   <ShopNavbar></ShopNavbar>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
-    <div class="container">
+  <LoadingOverlay :active="isLoading">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+    <div></div><div></div><div></div><div></div><div></div>
+    </div></div>
+  </LoadingOverlay>
+    <div class="container mt-5 mb-5">
       <!-- 進度條 -->
       <div class="row mb-4">
         <div class="col-md-8 col-10 mx-auto">
@@ -116,7 +120,7 @@
               <!-- <button class="btn btn-outline-secondary" type="button" @click="removeAll">
                   移除購物車
               </button> -->
-              <router-link to="/products" class="link-secondary">繼續購物</router-link>
+              <router-link to="/shop/products" class="link-secondary">繼續購物</router-link>
             </div>
           </div>
         </div>
@@ -127,11 +131,13 @@
         <!-- 看更多商品 -->
       </div>
     </div>
+    <ShopFooter></ShopFooter>
     <CartDelModal ref="delModal" :item="cart" @del-item="removeCartItem"></CartDelModal>
 </template>
 
 <script>
 import ShopNavbar from '@/components/ShopNavbar.vue'
+import ShopFooter from '@/components/ShopFooter.vue'
 import CartDelModal from '@/components/CartDelModal.vue'
 import statusStore from '@/stores/statusStore.js'
 import cartStore from '@/stores/cartStore.js'
@@ -154,8 +160,9 @@ export default {
     }
   },
   components: {
-    CartDelModal,
-    ShopNavbar
+    ShopNavbar,
+    ShopFooter,
+    CartDelModal
   },
   computed: {
     ...mapState(cartStore, ['carts', 'total', 'finalTotal']),
@@ -255,7 +262,7 @@ export default {
         })
     },
     goToCheckout () {
-      this.$router.push('/checkout')
+      this.$router.push('/shop/checkout')
     }
   },
   created () {

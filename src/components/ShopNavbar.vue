@@ -2,7 +2,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light py-2 px-lg-4">
     <!-- fixed-top opacity-75 -->
     <div class="container-fluid d-flex flex-nowrap">
-        <router-link class="navbar-brand fs-3 fw-bold text-warning mx-3" to="/">Hokii Poke</router-link>
+        <router-link class="navbar-brand fs-3 fw-bold text-primary mx-3" to="/">Hokii Poke</router-link>
         <!-- navbar -->
         <div class="container-fluid d-flex justify-content-end">
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#offcanvasNavbar" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation" @click.prevent="$refs.offcanvasNavbar.showCanvas()">
@@ -15,13 +15,13 @@
                       <router-link class="nav-link" to="/">首頁</router-link>
                   </li>
                   <li class="nav-item mx-2 ">
-                    <router-link class="nav-link" to="/about">關於 Hokii</router-link>
+                    <router-link class="nav-link" to="/shop/about">關於 Hokii</router-link>
                   </li>
                   <li class="nav-item mx-2 ">
-                    <router-link class="nav-link" to="/products">全店商品</router-link>
+                    <router-link class="nav-link" to="/shop/products">全店商品</router-link>
                   </li>
                   <li class="nav-item mx-2 ">
-                    <router-link class="nav-link" to="/faq">常見問題</router-link>
+                    <router-link class="nav-link" to="/shop/faq">常見問題</router-link>
                   </li>
                 </ul>
               </div>
@@ -35,7 +35,7 @@
               </span>
             </router-link> -->
             <!-- 開啟購物車側欄 -->
-            <a href="" class="text-warning py-2 position-relative" @click.prevent="$refs.cartCanvas.showCanvas()" data-bs-toggle="offcanvas" data-bs-target="#cart" aria-controls="offcanvasRight">
+            <a href="" class=" py-2 position-relative" @click.prevent="$refs.cartCanvas.showCanvas()" data-bs-toggle="offcanvas" data-bs-target="#cart" aria-controls="offcanvasRight">
               <i class="bi bi-cart4 fs-3"></i>
               <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                 {{ carts.length }}
@@ -49,7 +49,6 @@
     <ToastList></ToastList>
     <CartCanvas ref="cartCanvas"></CartCanvas>
     <NavCanvas ref="offcanvasNavbar"></NavCanvas>
-    <router-view></router-view>
 </div>
 </template>
 
@@ -79,6 +78,6 @@ export default {
 }
 </script>
 
-<style>
+<!-- <style>
 @import '~bootstrap/dist/css/bootstrap.min.css';
-</style>
+</style> -->

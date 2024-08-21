@@ -1,5 +1,9 @@
 <template>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+    <div></div><div></div><div></div><div></div><div></div>
+    </div></div>
+  </LoadingOverlay>
   <div class="container">
     <table class="table table-striped table-hover mt-4">
       <thead>

@@ -25,8 +25,10 @@ export default {
     // 將 cookie 中儲存的 token 抓出來
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1')
     console.log(token)
-    this.axios.defaults.headers.common.Authorization = token
     // 將 token 加到 Headers
+    // 參考文件：https://github.com/axios/axios?tab=readme-ov-file#-axiosheaders
+    this.axios.defaults.headers.common.Authorization = token
+    // 驗證登入狀態
     const api = `${process.env.VUE_APP_API}api/user/check`
     this.axios.post(api, this.user)
       .then((res) => {

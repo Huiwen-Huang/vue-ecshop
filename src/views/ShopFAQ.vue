@@ -1,5 +1,4 @@
 <template>
-<ShopNavbar></ShopNavbar>
 <!-- banner -->
 <div class="container-fuild position-relative animate__animated animate__fadeInUp">
   <img src="../assets/images/faq.jpg" class="img-fuild opacity-50" style="max-width: 100%; height: auto;" alt="">
@@ -100,17 +99,4 @@
 <div class="container my-4 text-center">
   <p>感謝您的理解與配合，若有任何疑問或需要進一步協助，請隨時聯繫我們的客服團隊，我們將竭誠為您服務。</p>
 </div>
-<ShopFooter></ShopFooter>
 </template>
-
-<script>
-import ShopNavbar from '@/components/ShopNavbar.vue'
-import ShopFooter from '@/components/ShopFooter.vue'
-
-export default {
-  components: {
-    ShopNavbar,
-    ShopFooter
-  }
-}
-</script>

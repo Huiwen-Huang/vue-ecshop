@@ -34,9 +34,6 @@
       <!-- 結帳按鈕 -->
       <div class="row w-100 position-absolute bottom-0 end-0 mb-3">
         <div class="col-11">
-          <!-- <router-link to="/cart">
-            <button type="button" class="btn btn-warning w-100 py-3">前往結帳</button>
-          </router-link> -->
           <button type="button" class="btn btn-warning w-100 py-3" v-if="carts.length > 0" @click.prevent="goToCart">前往結帳</button>
         </div>
       </div>
@@ -63,6 +60,9 @@ export default {
     },
     hideCanvas () {
       this.offcanvas.hide()
+    },
+    toggleCanvas () {
+      this.offcanvas.toggle()
     }
   },
   mounted () {

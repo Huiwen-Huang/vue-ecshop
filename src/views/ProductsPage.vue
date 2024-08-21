@@ -1,5 +1,9 @@
 <template>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+    <div></div><div></div><div></div><div></div><div></div>
+    </div></div>
+  </LoadingOverlay>
   <div class="container">
     <div class="text-end">
         <button class="btn btn-primary" type="button" @click="openModal(true)">
@@ -41,8 +45,11 @@
     </table>
   </div>
   <PaginationCard :pages="pagination" @emit-pages="getProducts"></PaginationCard>
-  <ProductModal ref="productModal" :product="tempProduct" @update-product="updateProduct"></ProductModal>
-  <DelModal ref="delModal" :item="tempProduct" @del-item="delProduct"></DelModal>
+  <ProductModal ref="productModal"
+          :product="tempProduct" @update-product="updateProduct"></ProductModal>
+  <DelModal ref="delModal"
+            :item="tempProduct"
+            @del-item="delProduct"></DelModal>
 </template>
 
 <script>

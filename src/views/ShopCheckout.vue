@@ -1,6 +1,9 @@
 <template>
-  <ShopNavbar></ShopNavbar>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+    <div></div><div></div><div></div><div></div><div></div>
+    </div></div>
+  </LoadingOverlay>
   <div class="container">
     <!-- 進度條 -->
     <div class="row mb-4">
@@ -140,8 +143,6 @@
 </template>
 
 <script>
-import ShopNavbar from '@/components/ShopNavbar.vue'
-
 export default {
   data () {
     return {
@@ -151,9 +152,6 @@ export default {
       },
       isLoading: false
     }
-  },
-  components: {
-    ShopNavbar
   },
   methods: {
     getOrder () {

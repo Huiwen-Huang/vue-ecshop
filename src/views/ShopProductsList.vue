@@ -1,6 +1,9 @@
 <template>
-  <ShopNavbar></ShopNavbar>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading">
+    <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
+    <div></div><div></div><div></div><div></div><div></div>
+    </div></div>
+  </LoadingOverlay>
   <!-- banner -->
   <div class="container-fuild position-relative mb-4 animate__animated animate__fadeInUp">
     <img src="../assets/images/banner-3.jpg" class="img-fuild opacity-50" style="max-width: 100%; height: auto;" alt="">
@@ -61,13 +64,10 @@
     <!-- <PaginationCard :pages="pagination" @emit-pages="getProducts"></PaginationCard> -->
     <CartCanvas ref="canvas"></CartCanvas>
   </div>
-  <ShopFooter></ShopFooter>
 </template>
 
 <script>
 import CartCanvas from '@/components/CartCanvas.vue'
-import ShopNavbar from '@/components/ShopNavbar.vue'
-import ShopFooter from '@/components/ShopFooter.vue'
 // import PaginationCard from '@/components/PaginationCard.vue'
 import productStore from '@/stores/productStore'
 import statusStore from '@/stores/statusStore'
@@ -81,8 +81,6 @@ export default {
     }
   },
   components: {
-    ShopNavbar,
-    ShopFooter,
     CartCanvas
   },
   inject: ['emitter'],
@@ -113,7 +111,7 @@ export default {
     ...mapActions(cartStore, ['getCart']),
     // 進入單一商品介紹頁
     getProduct (id) {
-      this.$router.push(`/product/${id}`)
+      this.$router.push(`/shop/product/${id}`)
     },
     // 加入購物車
     // ...mapActions(productStore, ['addCart'])

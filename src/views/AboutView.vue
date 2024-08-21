@@ -1,5 +1,4 @@
 <template>
-  <ShopNavbar></ShopNavbar>
   <!-- banner -->
   <div class="container-fuild position-relative animate__animated animate__fadeInUp">
     <img src="../assets/images/banner-4.jpg" class="img-fuild opacity-50" style="max-width: 100%; height: auto;" alt="">
@@ -39,20 +38,13 @@
         </div>
     </div>
   </div>
-  <ShopFooter></ShopFooter>
 </template>
 
 <script>
-import ShopNavbar from '@/components/ShopNavbar.vue'
-import ShopFooter from '@/components/ShopFooter.vue'
 import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
 
 export default {
-  components: {
-    ShopNavbar,
-    ShopFooter
-  },
   computed: {
     ...mapState(cartStore, ['carts'])
   },

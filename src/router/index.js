@@ -1,3 +1,4 @@
+// import { children } from 'bootstrap/js/dist/dom/selector-engine'
 import { createRouter, createWebHashHistory } from 'vue-router'
 // import HomeView from '../views/HomeView.vue'
 
@@ -8,12 +9,31 @@ const routes = [
     component: () => import('../views/ShopHomePage.vue')
   },
   {
-    path: '/products',
-    component: () => import('../views/ShopProductsList.vue')
-  },
-  {
-    path: '/product/:productId',
-    component: () => import('../views/ShopPerProduct.vue')
+    path: '/shop',
+    name: 'shop',
+    component: () => import('../views/ShopBoard.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/ShopProductsList.vue')
+      },
+      {
+        path: 'product/:productId',
+        component: () => import('../views/ShopPerProduct.vue')
+      },
+      {
+        path: 'orders',
+        component: () => import('../views/ShopOrders.vue')
+      },
+      {
+        path: 'about',
+        component: () => import('../views/AboutView.vue')
+      },
+      {
+        path: 'faq',
+        component: () => import('../views/ShopFAQ.vue')
+      }
+    ]
   },
   {
     path: '/cart',
@@ -26,19 +46,6 @@ const routes = [
   {
     path: '/checkout/:orderId',
     component: () => import('../views/ShopCheckout.vue')
-  },
-  {
-    path: '/orders',
-    component: () => import('../views/ShopOrders.vue')
-  },
-  {
-    path: '/about',
-    name: 'about',
-    component: () => import('../views/AboutView.vue')
-  },
-  {
-    path: '/faq',
-    component: () => import('../views/ShopFAQ.vue')
   },
   {
     path: '/login',
