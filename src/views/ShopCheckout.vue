@@ -1,10 +1,11 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading">
     <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
     <div></div><div></div><div></div><div></div><div></div>
     </div></div>
   </LoadingOverlay>
-  <div class="container">
+  <div class="container mt-5 mb-5">
     <!-- 進度條 -->
     <div class="row mb-4">
       <div class="col-md-8 col-10 mx-auto">
@@ -140,9 +141,13 @@
       </div>
     </div>
   </div>
+  <ShopFooter></ShopFooter>
 </template>
 
 <script>
+import ShopNavbar from '@/components/ShopNavbar.vue'
+import ShopFooter from '@/components/ShopFooter.vue'
+
 export default {
   data () {
     return {
@@ -152,6 +157,10 @@ export default {
       },
       isLoading: false
     }
+  },
+  components: {
+    ShopNavbar,
+    ShopFooter
   },
   methods: {
     getOrder () {

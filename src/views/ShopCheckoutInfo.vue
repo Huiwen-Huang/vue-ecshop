@@ -1,10 +1,11 @@
 <template>
+  <ShopNavbar></ShopNavbar>
   <LoadingOverlay :active="isLoading">
     <div class="loadingio-spinner-ellipsis-nq4q5u6dq7r"><div class="ldio-x2uulkbinbj">
     <div></div><div></div><div></div><div></div><div></div>
     </div></div>
   </LoadingOverlay>
-  <div class="container">
+  <div class="container mt-5 mb-5">
     <!-- 進度條 -->
       <div class="row mb-4">
         <div class="col-md-8 col-10 mx-auto">
@@ -126,11 +127,14 @@
     </div>
     </v-form>
   </div>
+  <ShopFooter></ShopFooter>
 </template>
 
 <script>
 import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
+import ShopNavbar from '@/components/ShopNavbar.vue'
+import ShopFooter from '@/components/ShopFooter.vue'
 
 export default {
   data () {
@@ -148,6 +152,10 @@ export default {
         pay: ''
       }
     }
+  },
+  components: {
+    ShopNavbar,
+    ShopFooter
   },
   computed: {
     ...mapState(cartStore, ['total', 'finalTotal', 'carts'])
@@ -169,7 +177,7 @@ export default {
         })
     },
     backToCart () {
-      this.$router.push('/shop/cart')
+      this.$router.push('/cart')
     },
     isPhone (value) {
       const phoneNumber = /^(09)[0-9]{8}$/

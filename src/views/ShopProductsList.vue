@@ -87,7 +87,6 @@ export default {
   computed: {
     ...mapState(productStore, ['products', 'categories']),
     ...mapState(statusStore, ['isLoading', 'cartLoadingItem']),
-    ...mapState(cartStore, ['carts']),
     // 篩選分類品項
     filterCategories () {
       let filterProducts = this.products
@@ -139,7 +138,6 @@ export default {
   },
   created () {
     this.getAllProducts()
-    this.getCart()
   }
 }
 </script>

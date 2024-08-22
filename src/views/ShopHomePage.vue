@@ -119,7 +119,6 @@
 <script>
 import ShopNavbar from '@/components/ShopNavbar.vue'
 import ShopFooter from '@/components/ShopFooter.vue'
-import cartStore from '@/stores/cartStore'
 import productStore from '@/stores/productStore'
 import { mapState, mapActions } from 'pinia'
 
@@ -129,16 +128,10 @@ export default {
     ShopFooter
   },
   computed: {
-    ...mapState(cartStore, ['carts']),
     ...mapState(productStore, ['products'])
   },
   methods: {
-    // 取得購物車數量
-    ...mapActions(cartStore, ['getCart']),
     ...mapActions(productStore, ['addCart'])
-  },
-  created () {
-    this.getCart()
   }
 }
 </script>

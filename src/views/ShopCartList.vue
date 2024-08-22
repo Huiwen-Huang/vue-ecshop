@@ -262,7 +262,7 @@ export default {
         })
     },
     goToCheckout () {
-      this.$router.push('/shop/checkout')
+      this.$router.push('/checkout')
     }
   },
   created () {
