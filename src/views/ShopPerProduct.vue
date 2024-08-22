@@ -1,6 +1,6 @@
 <template>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
-  <div class="container mt-5 pt-5">
+  <div class="container mt-5">
     <!-- breadcrumb -->
     <nav aria-label="breadcrumb" class="mb-4">
       <ol class="breadcrumb mb-4">
@@ -10,7 +10,7 @@
       </ol>
     </nav>
     <!-- product details -->
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mb-5">
       <div class="col-md-5 col-11 mb-4" style="max-width: 500px;">
         <img :src="product.imageUrl" alt="productImg" style="width:100%; height: 100%;">
       </div>
@@ -168,7 +168,6 @@ export default {
     // 透過路由去抓商品 ID
     this.id = this.$route.params.productId
     this.getProduct(this.id)
-    this.getCart()
   }
 }
 </script>

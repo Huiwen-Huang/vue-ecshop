@@ -77,7 +77,8 @@ const router = createRouter({
   linkActiveClass: 'active',
   scrollBehavior (to, from, savedPosition) {
     // `to` 和 `from` 都是路由对象
-    if (to.fullPath.match('newPage')) {
+    if (to.fullPath.match('checkout')) {
+      // 針對路由有 checkout 的頁面
       return {
         top: 0
       }
