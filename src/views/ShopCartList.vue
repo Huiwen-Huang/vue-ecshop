@@ -143,19 +143,10 @@ import statusStore from '@/stores/statusStore.js'
 import cartStore from '@/stores/cartStore.js'
 import { mapState, mapActions } from 'pinia'
 
-// const status = statusStore()
-
 export default {
   data () {
     return {
-      // carts: [], // 購物車所有商品
       cart: {}, // 單一列商品
-      // total: '',
-      // finalTotal: '',
-      // isLoading: false,
-      // status: {
-      //   loadingItem: ''
-      // },
       coupon_code: ''
     }
   },
@@ -172,21 +163,6 @@ export default {
   methods: {
     // 取購物車列表
     ...mapActions(cartStore, ['getCart', 'updateCart']),
-    // ...mapActions(statusStore, ['pushMsg']),
-    // getCart () {
-    //   const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
-    //   this.isLoading = true
-    //   this.$http.get(api)
-    //     .then((res) => {
-    //       this.isLoading = false
-    //       console.log('getCart', res)
-    //       if (res.data.success) {
-    //         this.carts = res.data.data.carts
-    //         this.total = res.data.data.total
-    //         this.finalTotal = res.data.data.final_total
-    //       }
-    //     })
-    // },
     // 開啟刪除彈窗
     openDelModal (item) {
       this.cart = { ...item }
@@ -203,8 +179,7 @@ export default {
           const deleteComponent = this.$refs.delModal
           deleteComponent.hideModal()
           this.isLoading = false
-          this.$httpMsgState(res, '商品移除')
-          // status.pushMsg({ title: '商品移除成功' })
+          // this.$httpMsgState(res, '商品移除')
           console.log('removeCartItem', res)
           this.getCart()
         })
@@ -222,24 +197,7 @@ export default {
           this.getCart()
         })
     },
-    // 更新購物車價格
-    // updateCart (item) {
-    //   const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-    //   const cart = {
-    //     product_id: item.product_id,
-    //     qty: item.qty
-    //   }
-    //   this.isLoading = true
-    //   this.status.loadingItem = item.id
-    //   this.$http.put(api, { data: cart })
-    //     .then(res => {
-    //       console.log('updateCart', res)
-    //       this.isLoading = false
-    //       this.status.loadingItem = ''
-    //       this.getCart()
-    //     })
-    // },
-    // 套用優惠活動
+    // // 套用優惠活動
     addCouponCode () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/coupon`
       // 需要帶入參數
@@ -253,10 +211,9 @@ export default {
           // 套用後清空欄位資料
           this.coupon_code = ''
           // 設定訊息回饋
-          this.$httpMsgState(res, '優惠套用')
-          // status.pushMsg({ title: '優惠套用成功' })
           console.log('addCouponCode', res)
           if (res.data.success) {
+            this.$httpMsgState(res, '優惠套用')
             this.getCart()
           }
         })

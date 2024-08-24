@@ -44,16 +44,6 @@ export default defineStore('cartState', {
           status.cartLoadingItem = ''
           this.getCart()
         })
-    },
-    delProduct (item) {
-      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-      this.isLoading = true
-      axios.delete(api)
-        .then(res => {
-          this.isLoading = false
-          console.log('removeCartItem', res)
-          this.getCart()
-        })
     }
   }
 })

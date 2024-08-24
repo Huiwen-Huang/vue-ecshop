@@ -60,6 +60,7 @@ import cartStore from '@/stores/cartStore'
 import CartCanvas from './CartCanvas.vue'
 import { mapState, mapActions } from 'pinia'
 import NavCanvas from './NavCanvas.vue'
+import statusStore from '@/stores/statusStore'
 
 export default {
   components: {
@@ -77,10 +78,14 @@ export default {
   },
   methods: {
     // 取得購物車數量
-    ...mapActions(cartStore, ['getCart'])
+    ...mapActions(cartStore, ['getCart']),
+    ...mapActions(statusStore, ['resetMessage'])
   },
   created () {
     this.getCart()
+  },
+  beforeUnmount () {
+    this.resetMessage()
   }
 }
 </script>

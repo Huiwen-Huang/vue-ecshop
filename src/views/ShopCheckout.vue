@@ -5,7 +5,7 @@
     <div></div><div></div><div></div><div></div><div></div>
     </div></div>
   </LoadingOverlay>
-  <div class="container mt-5 mb-5">
+  <div class="container mt-4 mb-5">
     <!-- 進度條 -->
     <div class="row mb-4">
       <div class="col-md-8 col-10 mx-auto">

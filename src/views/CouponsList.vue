@@ -72,7 +72,7 @@ export default {
       this.$http.get(api)
         .then(res => {
           this.isLoading = false
-          console.log(res.data)
+          console.log('getCoupons', res.data)
           this.coupons = res.data.coupons
           this.pagination = res.data.pagination
         })
@@ -101,7 +101,7 @@ export default {
       }
       this.$http[httpMethod](api, { data: this.tempCoupon })
         .then(res => {
-          console.log(res)
+          console.log('updateCoupon', res)
           couponCompoent.hideModal()
           this.getCoupons()
           this.$httpMsgState(res, '更新')
@@ -114,7 +114,8 @@ export default {
         .then(res => {
           this.status.loadingItem = ''
           this.getCoupons()
-          console.log(res)
+          this.$httpMsgState(res, '刪除')
+          console.log('delCoupon', res)
         })
     }
   },

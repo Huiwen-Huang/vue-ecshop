@@ -4,14 +4,17 @@ export default defineStore('statusState', {
   state: () => {
     return {
       isLoading: false,
-      cartLoadingItem: ''
-      // messages: []
+      cartLoadingItem: '',
+      messages: []
+    }
+  },
+  actions: {
+    pushMsg (data) {
+      const { title, content, style = 'success' } = data
+      this.messages.push({ style, title, content })
+    },
+    resetMessage () {
+      this.messages = []
     }
   }
-  // actions: {
-  //   pushMsg (data) {
-  //     const { title, content } = data
-  //     this.messages.push({ title, content })
-  //   }
-  // }
 })

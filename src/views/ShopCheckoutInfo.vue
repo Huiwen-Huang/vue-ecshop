@@ -172,7 +172,7 @@ export default {
           this.isLoading = false
           console.log(res)
           if (res.data.success) {
-            this.$router.push(`/shop/checkout/${res.data.orderId}`)
+            this.$router.push(`/checkout/${res.data.orderId}`)
           }
         })
     },

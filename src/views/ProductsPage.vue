@@ -140,6 +140,7 @@ export default {
           deleteComponent.hideModal()
           this.isLoading = false
           this.getProducts()
+          this.$httpMsgState(res, '刪除')
         })
     }
   },

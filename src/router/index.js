@@ -76,13 +76,14 @@ const router = createRouter({
   routes,
   linkActiveClass: 'active',
   scrollBehavior (to, from, savedPosition) {
-    // `to` 和 `from` 都是路由对象
-    if (to.fullPath.match('checkout')) {
-      // 針對路由有 checkout 的頁面
-      return {
-        top: 0
-      }
+    // 定義需要自動滾動到頂部的路由條件
+    const routesToScrollToTop = ['cart', 'checkout']
+    // 檢查目標路由的完整路徑是否包含在指定的路由中
+    if (routesToScrollToTop.some(route => to.fullPath.includes(route))) {
+      return { top: 0 } // 自動滾動到頂部
     }
+    // 返回預設位置
+    return savedPosition || { top: 0 } // 如果有保存的位置則返回，否則滾動到頂部
   }
 })
 

@@ -112,8 +112,6 @@ export default {
     getProduct (id) {
       this.$router.push(`/shop/product/${id}`)
     },
-    // 加入購物車
-    // ...mapActions(productStore, ['addCart'])
     // 加入購物車+顯示側欄
     addCart (id) {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
@@ -126,8 +124,6 @@ export default {
       this.axios.post(api, { data: cart }) // 帶入參數的方式要留意
         .then((res) => {
           this.cartLoadingItem = ''
-          // this.$httpMsgState(res, '加入購物車')
-          // status.pushMsg({ title: '商品已加入購物車' })
           console.log('addCart', res)
           if (res.data.success) {
             this.getCart()
