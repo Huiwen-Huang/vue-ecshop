@@ -77,7 +77,7 @@ const router = createRouter({
   linkActiveClass: 'active',
   scrollBehavior (to, from, savedPosition) {
     // 定義需要自動滾動到頂部的路由條件
-    const routesToScrollToTop = ['cart', 'checkout']
+    const routesToScrollToTop = ['cart', 'checkout', 'products']
     // 檢查目標路由的完整路徑是否包含在指定的路由中
     if (routesToScrollToTop.some(route => to.fullPath.includes(route))) {
       return { top: 0 } // 自動滾動到頂部

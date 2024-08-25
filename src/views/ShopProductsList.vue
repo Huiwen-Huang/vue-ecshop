@@ -14,6 +14,7 @@
       <!-- 分類選單 -->
       <div class="col-md-9 col-10 mb-4">
         <div class="row justify-content-center">
+          <!-- 全部商品 -->
           <div class="col-md-2 col-6">
             <button type="button"
             class="btn btn-outline-warning fw-bold text-center mb-md-4 mb-2 w-100"
@@ -21,42 +22,77 @@
             @click.prevent="filterCategory = ''">全部商品
             </button>
           </div>
+          <!-- 分類按鈕 -->
           <div v-for="category in categories" :key="category" class="col-md-2 col-6">
             <button type="button"
             class="btn btn-outline-warning text-center mb-md-4 mb-2 w-100"
             :class="{ 'active': filterCategory === category }"
-            @click.prevent="filterCategory = category">{{ category }}
-            <!-- <span class="badge bg-light rounded-pill ms-5">{{ sortProducts.length }}</span> -->
+            @click.prevent="filterButton (category)">{{ category }}
             </button>
+          </div>
+          <!-- search -->
+          <div class="col-lg-3 col-md-8 col-12">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="search" v-model="cacheSearch">
+            </div>
           </div>
         </div>
       </div>
       <!-- 產品卡片 -->
       <div class="col-md-9 col-sm-12">
         <div class="row justify-content-center">
-          <div>{{ filterCategories.category }}</div>
-          <div v-for="item in filterCategories" :key="item.id" class="card mx-md-3 mb-4 shadow rounded p-0" style="width: 18rem;">
-              <a href="" @click.prevent="getProduct(item.id)">
-                <div style="height: 200px; background-size: cover; background-position: top"
-                    :style="{backgroundImage: `url(${item.imageUrl})`}">
-                </div>
-              </a>
-            <div class="card-body">
-              <h6 class="card-title mb-4">{{ item.title }}
-                <span class="card-text float-end">NT$ {{ item.price }}</span>
-              </h6>
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-outline-warning w-100"
-                        :disabled="cartLoadingItem === item.id"
-                        @click="addCart(item.id)">
-                  <div v-if="cartLoadingItem === item.id" class="spinner-border spinner-border-sm" role="status">
-                    <span class="visually-hidden">Loading...</span>
+          <!-- 透過分類篩選 -->
+          <template v-if="!cacheSearch">
+            <h2 class="text-center text-warning mb-4">{{ filterCategory || '全部商品' }}</h2>
+            <div v-for="item in filterCategories" :key="item.id" class="card mx-md-3 mt-4 mb-4 shadow rounded p-0" style="width: 18rem;">
+                <a href="" @click.prevent="getProduct(item.id)">
+                  <div style="height: 200px; background-size: cover; background-position: top"
+                      :style="{backgroundImage: `url(${item.imageUrl})`}">
                   </div>
-                  <i class="bi bi-cart4"></i> 加入購物車
-                </button>
+                </a>
+              <div class="card-body">
+                <h6 class="card-title mb-4">{{ item.title }}
+                  <span class="card-text float-end">NT$ {{ item.price }}</span>
+                </h6>
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-outline-warning w-100"
+                          :disabled="cartLoadingItem === item.id"
+                          @click="addCart(item.id)">
+                    <div v-if="cartLoadingItem === item.id" class="spinner-border spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <i class="bi bi-cart4"></i> 加入購物車
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
+          </template>
+          <!-- 透過搜尋篩選 -->
+          <template v-else>
+            <h2 class="text-center text-warning mb-4">關鍵字搜尋：{{ cacheSearch }}</h2>
+            <div v-for="item in searchProducts" :key="item.id" class="card mx-md-3 mt-4 mb-4 shadow rounded p-0" style="width: 18rem;">
+                <a href="" @click.prevent="getProduct(item.id)">
+                  <div style="height: 200px; background-size: cover; background-position: top"
+                      :style="{backgroundImage: `url(${item.imageUrl})`}">
+                  </div>
+                </a>
+              <div class="card-body">
+                <h6 class="card-title mb-4">{{ item.title }}
+                  <span class="card-text float-end">NT$ {{ item.price }}</span>
+                </h6>
+                <div class="d-flex justify-content-center">
+                  <button class="btn btn-outline-warning w-100"
+                          :disabled="cartLoadingItem === item.id"
+                          @click="addCart(item.id)">
+                    <div v-if="cartLoadingItem === item.id" class="spinner-border spinner-border-sm" role="status">
+                      <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <i class="bi bi-cart4"></i> 加入購物車
+                  </button>
+                </div>
+              </div>
+            </div>
+          </template>
         </div>
       </div>
     </div>
@@ -71,13 +107,13 @@ import CartCanvas from '@/components/CartCanvas.vue'
 // import PaginationCard from '@/components/PaginationCard.vue'
 import productStore from '@/stores/productStore'
 import statusStore from '@/stores/statusStore'
-import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
 
 export default {
   data () {
     return {
-      filterCategory: ''
+      filterCategory: '',
+      cacheSearch: ''
     }
   },
   components: {
@@ -92,22 +128,25 @@ export default {
       let filterProducts = this.products
       if (this.filterCategory) {
         filterProducts = filterProducts.filter((item) => {
-          return item.category
-            .toLowerCase()
-            .includes(this.filterCategory.toLowerCase())
+          return item.category.match(this.filterCategory)
         })
       }
       return filterProducts.sort(
         (a, b) => a.price - b.price
       )
+    },
+    searchProducts () {
+      return this.products.filter((item) => item.title.match(this.cacheSearch))
     }
   },
   methods: {
     // 取得產品列表
     ...mapActions(productStore, ['getAllProducts']),
     ...mapActions(productStore, ['getProducts']),
-    // 取得購物車數量
-    ...mapActions(cartStore, ['getCart']),
+    filterButton (item) {
+      this.filterCategory = item
+      this.cacheSearch = ''
+    },
     // 進入單一商品介紹頁
     getProduct (id) {
       this.$router.push(`/shop/product/${id}`)

@@ -44,6 +44,17 @@ export default defineStore('cartState', {
           status.cartLoadingItem = ''
           this.getCart()
         })
+    },
+    // cartcanvas 刪除商品
+    delProduct (item) {
+      const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
+      status.isLoading = true
+      axios.delete(api)
+        .then(res => {
+          console.log('delProduct', res)
+          status.isLoading = false
+          this.getCart()
+        })
     }
   }
 })

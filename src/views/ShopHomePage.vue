@@ -7,7 +7,7 @@
           <div class="position-relative" style="height: 800px; background-size: cover; background-position: center; opacity: 75%"
               :style="{backgroundImage: `url(${require('@/assets/images/banner-1.jpg')})`}"></div>
           <h1 class="text-center text-warning fw-bold position-absolute top-50 start-50 translate-middle animate__animated animate__rollIn animate__delay-1s">Welcome to Hokii poke!
-            <router-link class="text-decoration-none" to="/products">
+            <router-link class="text-decoration-none" to="/shop/products">
                 <button class="btn btn-outline-warning d-block mx-auto mt-4 animate__animated animate__flash animate__delay-1s">
                 SHOP NOW
               </button>
@@ -102,7 +102,7 @@
         </div>
       </div>
     </div>
-    <!-- footer -->
+    <!-- 訂閱 -->
     <div style="height: 400px; background-size: cover; background-position: center"
         :style="{backgroundImage: `url(${require('@/assets/images/footer-bn.jpg')})`}">
       <div class="position-relative top-50 start-0 w-50 ms-md-5 ms-4" data-aos="fade-up">
