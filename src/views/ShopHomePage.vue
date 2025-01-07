@@ -4,8 +4,9 @@
       <div class="row p-0">
         <!-- Banner -->
         <div class="col-md-12 p-0 mb-md-4 mb-3 animate__animated animate__fadeInUp">
-          <div class="position-relative" style="height: 800px; background-size: cover; background-position: center; opacity: 75%"
+          <div class="position-relative" style="width: 100%; height: 800px; background-size: cover; background-position: center; opacity: 75%"
               :style="{backgroundImage: `url(${require('@/assets/images/banner-1.jpg')})`}"></div>
+          <!-- <img src="../assets/images/banner-1.jpg" class="img-fuild opacity-75" style="max-width: 100%; height: auto;" alt=""> -->
           <h1 class="text-center text-warning fw-bold position-absolute top-50 start-50 translate-middle animate__animated animate__rollIn animate__delay-1s">Welcome to Hokii poke!
             <router-link class="text-decoration-none" to="/shop/products">
                 <button class="btn btn-outline-warning d-block mx-auto mt-4 animate__animated animate__flash animate__delay-1s">

@@ -1,4 +1,4 @@
-<template class="">
+<template>
 <ShopNavbar></ShopNavbar>
 <div class="container-fluid d-flex flex-column p-0 m-0">
   <router-view></router-view>

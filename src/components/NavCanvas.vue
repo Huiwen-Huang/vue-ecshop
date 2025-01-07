@@ -10,13 +10,13 @@
         <router-link class="nav-link" to="/">首頁</router-link>
       </li>
       <li class="nav-item mx-2">
-        <router-link class="nav-link" to="/about">關於 Hokii</router-link>
+        <router-link class="nav-link" to="/shop/about">關於 Hokii</router-link>
       </li>
       <li class="nav-item mx-2">
-        <router-link class="nav-link" to="/products">全店商品</router-link>
+        <router-link class="nav-link" to="/shop/products">全店商品</router-link>
       </li>
       <li class="nav-item mx-2 ">
-        <router-link class="nav-link" to="/faq">常見問題</router-link>
+        <router-link class="nav-link" to="/shop/faq">常見問題</router-link>
       </li>
     </ul>
   </div>

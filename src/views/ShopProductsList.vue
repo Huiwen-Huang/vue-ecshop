@@ -107,6 +107,7 @@ import CartCanvas from '@/components/CartCanvas.vue'
 // import PaginationCard from '@/components/PaginationCard.vue'
 import productStore from '@/stores/productStore'
 import statusStore from '@/stores/statusStore'
+import cartStore from '@/stores/cartStore'
 import { mapState, mapActions } from 'pinia'
 
 export default {
@@ -143,6 +144,7 @@ export default {
     // 取得產品列表
     ...mapActions(productStore, ['getAllProducts']),
     ...mapActions(productStore, ['getProducts']),
+    ...mapActions(cartStore, ['getCart']),
     filterButton (item) {
       this.filterCategory = item
       this.cacheSearch = ''
