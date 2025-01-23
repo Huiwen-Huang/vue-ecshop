@@ -2,7 +2,7 @@
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <div class="container mt-5">
     <!-- breadcrumb -->
-    <nav aria-label="breadcrumb" class="mb-4">
+    <nav aria-label="breadcrumb" class="mb-4 mt-5">
       <ol class="breadcrumb mb-4">
         <li class="breadcrumb-item"><router-link class="link-secondary" to="/shop/products">全部商品</router-link></li>
         <li class="breadcrumb-item" aria-current="page">{{ product.category }}</li>
@@ -38,82 +38,6 @@
         </button>
       </div>
     </div>
-    <!-- more products -->
-    <!-- <div class="swiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image1.png?raw=true" alt="blogImg01" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">Vision Pro 登場！Vision Pro UI/UX 設計重點大公開 (上)</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image2.png?raw=true" alt="blogImg02" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">給設計師和工程師的 Figma-Dev Mode 開發模式使用指南 (下)</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image3.png?raw=true" alt="blogImg03" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">Vision Pro 登場！Vision Pro UI/UX 設計重點大公開 (上)</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image4.png?raw=true" alt="blogImg04" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">虛擬實境 (VR) 介面設計對使用者沈浸感影響的研究</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image5.png?raw=true" alt="blogImg05" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">想打到目標受眾？先讓設計師跟你都瞭解他們痛在哪！</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image6.png?raw=true" alt="blogImg06" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">React vs. Vue，哪種前端框架比較好用？從三大面向談起</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-slide">
-          <img src="https://github.com/hexschool/2022-web-layout-training/blob/main/2024%20web-camp/article-image7.png?raw=true" alt="blogImg07" class="articleImg">
-          <div class="articleInfo">
-            <h3 class="articleTitle">Vision Pro 來了！UIUX 設計師的未來在哪裡？</h3>
-            <div class="articleContent">
-              <p>UI/UX 新知</p>
-              <p>2024/02/10</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="swiper-pagination"></div>
-    </div> -->
   </div>
 </template>
 

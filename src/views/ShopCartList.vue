@@ -39,7 +39,7 @@
       <div class="row" v-if="this.total === 0">
         <div class="col text-center">
           <p class="text-secondary mt-4 fs-5">購物車尚內無商品，
-            <router-link to="/products" class="link-secondary">點我</router-link> 繼續選購！</p>
+            <router-link to="/shop/products" class="link-secondary">點我</router-link> 繼續選購！</p>
           <img src="../assets/images/cartEmpty.jpg" alt="cartEmpty" style="width:500px">
         </div>
       </div>
@@ -64,8 +64,6 @@
                 <tr v-for="item in carts" :key="item.product.id">
                   <td>
                     <img :src="item.product.imageUrl" style="width: 90%;" alt="">
-                    <!-- <div style="height: 80px; background-size: cover; background-position: center"
-                      :style="{backgroundImage: `url(${item.product.imageUrl})`}"></div> -->
                   </td>
                   <td>
                     {{ item.product.title }}

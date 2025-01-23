@@ -1,10 +1,9 @@
 <template>
 <ShopNavbar></ShopNavbar>
-<div class="container-fluid d-flex flex-column p-0 m-0">
+<div class="container-fluid d-flex flex-column pb-5 p-lg-0 m-0" >
   <router-view></router-view>
-  <ShopFooter class="mt-auto"></ShopFooter>
+  <ShopFooter></ShopFooter>
 </div>
-<!-- position-relative position-absolute bottom-0 end-0 -->
 </template>
 
 <script>
